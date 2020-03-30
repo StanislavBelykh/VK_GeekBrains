@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  MyCommunityViewController.swift
 //  VK_GeekBrains
 //
 //  Created by Станислав on 30.03.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class MyCommunityViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
