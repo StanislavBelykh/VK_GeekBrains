@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		8527878A2431FBEE00078C48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852787892431FBEE00078C48 /* AppDelegate.swift */; };
 		8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527878B2431FBEE00078C48 /* SceneDelegate.swift */; };
-		8527878E2431FBEE00078C48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527878D2431FBEE00078C48 /* ViewController.swift */; };
 		852787912431FBEE00078C48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8527878F2431FBEE00078C48 /* Main.storyboard */; };
 		852787932431FBF200078C48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852787922431FBF200078C48 /* Assets.xcassets */; };
 		852787962431FBF200078C48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852787942431FBF200078C48 /* LaunchScreen.storyboard */; };
+		8527879E243207CE00078C48 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527879D243207CE00078C48 /* LoginViewController.swift */; };
+		852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527879F2432345E00078C48 /* MyFriendViewController.swift */; };
+		852787A22432347A00078C48 /* PhotoToFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852787A12432347A00078C48 /* PhotoToFriendViewController.swift */; };
+		852787A4243234A000078C48 /* MyCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852787A3243234A000078C48 /* MyCommunityViewController.swift */; };
+		852787A6243234BA00078C48 /* AllCommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852787A5243234BA00078C48 /* AllCommunityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		852787862431FBEE00078C48 /* VK_GeekBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_GeekBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852787892431FBEE00078C48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8527878B2431FBEE00078C48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8527878D2431FBEE00078C48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		852787902431FBEE00078C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		852787922431FBF200078C48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		852787952431FBF200078C48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		852787972431FBF200078C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8527879D243207CE00078C48 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8527879F2432345E00078C48 /* MyFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendViewController.swift; sourceTree = "<group>"; };
+		852787A12432347A00078C48 /* PhotoToFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoToFriendViewController.swift; sourceTree = "<group>"; };
+		852787A3243234A000078C48 /* MyCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommunityViewController.swift; sourceTree = "<group>"; };
+		852787A5243234BA00078C48 /* AllCommunityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommunityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,25 @@
 			children = (
 				852787892431FBEE00078C48 /* AppDelegate.swift */,
 				8527878B2431FBEE00078C48 /* SceneDelegate.swift */,
-				8527878D2431FBEE00078C48 /* ViewController.swift */,
+				852787A72432353800078C48 /* Controllers */,
 				8527878F2431FBEE00078C48 /* Main.storyboard */,
 				852787922431FBF200078C48 /* Assets.xcassets */,
 				852787942431FBF200078C48 /* LaunchScreen.storyboard */,
 				852787972431FBF200078C48 /* Info.plist */,
 			);
 			path = VK_GeekBrains;
+			sourceTree = "<group>";
+		};
+		852787A72432353800078C48 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8527879D243207CE00078C48 /* LoginViewController.swift */,
+				8527879F2432345E00078C48 /* MyFriendViewController.swift */,
+				852787A12432347A00078C48 /* PhotoToFriendViewController.swift */,
+				852787A3243234A000078C48 /* MyCommunityViewController.swift */,
+				852787A5243234BA00078C48 /* AllCommunityViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8527878E2431FBEE00078C48 /* ViewController.swift in Sources */,
+				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,
+				8527879E243207CE00078C48 /* LoginViewController.swift in Sources */,
+				852787A6243234BA00078C48 /* AllCommunityViewController.swift in Sources */,
+				852787A22432347A00078C48 /* PhotoToFriendViewController.swift in Sources */,
 				8527878A2431FBEE00078C48 /* AppDelegate.swift in Sources */,
+				852787A4243234A000078C48 /* MyCommunityViewController.swift in Sources */,
 				8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
