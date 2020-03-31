@@ -19,7 +19,7 @@ struct Groups {
     }
 }
 
-struct Group {
+struct Group: Equatable {
     let name: String
     let avatar: String
 }
