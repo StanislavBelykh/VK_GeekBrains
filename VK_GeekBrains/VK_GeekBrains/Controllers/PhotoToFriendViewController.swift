@@ -9,25 +9,22 @@
 import UIKit
 
 class PhotoToFriendViewController: UIViewController {
-
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var galleryCollectionView = GalleryCollectionView()
+    
+    var photosToFriend = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(galleryCollectionView)
+        galleryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        galleryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        galleryCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        galleryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        galleryCollectionView.set(photos: photosToFriend)
+        galleryCollectionView.reloadData()
 
-    }
-    
-}
-extension PhotoToFriendViewController: UICollectionViewDelegate{
-    
-}
-extension PhotoToFriendViewController: UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoFriend", for: indexPath)
-        return cell
     }
 }
