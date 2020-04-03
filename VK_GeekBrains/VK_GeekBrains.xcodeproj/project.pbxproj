@@ -25,6 +25,7 @@
 		85695AD8243333310037DCA2 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85695AD7243333310037DCA2 /* FriendTableViewCell.swift */; };
 		85B0BBC42437359500B3953B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC32437359500B3953B /* AvatarView.swift */; };
 		85B0BBC62437375500B3953B /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC52437375500B3953B /* ShadowView.swift */; };
+		85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC72437564A00B3953B /* SettingsViewController.swift */; };
 		85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		85695AD7243333310037DCA2 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		85B0BBC32437359500B3953B /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		85B0BBC52437375500B3953B /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		85B0BBC72437564A00B3953B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 				852787A12432347A00078C48 /* PhotoToFriendViewController.swift */,
 				852787A3243234A000078C48 /* MyCommunityViewController.swift */,
 				852787A5243234BA00078C48 /* AllCommunityViewController.swift */,
+				85B0BBC72437564A00B3953B /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				852787A4243234A000078C48 /* MyCommunityViewController.swift in Sources */,
 				85695AD8243333310037DCA2 /* FriendTableViewCell.swift in Sources */,
 				8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */,
+				85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */,
 				85B0BBC62437375500B3953B /* ShadowView.swift in Sources */,
 				85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */,
 				85B0BBC42437359500B3953B /* AvatarView.swift in Sources */,
