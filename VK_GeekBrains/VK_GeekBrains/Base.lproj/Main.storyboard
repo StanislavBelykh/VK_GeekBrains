@@ -293,7 +293,7 @@
         <scene sceneID="Gsi-gN-E2k">
             <objects>
                 <viewController id="Zoy-d4-Bz7" customClass="SettingsViewController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qex-P1-BXl" customClass="Sett">
+                    <view key="view" contentMode="scaleToFill" id="qex-P1-BXl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -329,6 +329,11 @@
                         <viewLayoutGuide key="safeArea" id="XcW-3S-kKO"/>
                     </view>
                     <navigationItem key="navigationItem" id="yAF-UL-5mU"/>
+                    <connections>
+                        <outlet property="imageView" destination="HXl-1n-sBF" id="bGL-e5-JNI"/>
+                        <outlet property="settingsLabel" destination="Rvx-6a-epU" id="Od6-qk-lWe"/>
+                        <outlet property="shadowView" destination="cV7-XU-NCp" id="Sjz-5Z-aYY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvR-Ch-Qq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
