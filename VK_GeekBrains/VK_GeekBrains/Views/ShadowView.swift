@@ -17,10 +17,10 @@ class ShadowView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = frame.height/2
-        layer.shadowColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-        layer.shadowRadius = 8
+        layer.cornerRadius = SettingsSinglton.shared.cornerRadius
+        layer.shadowColor = SettingsSinglton.shared.shadowColor
+        layer.shadowRadius = SettingsSinglton.shared.shadowRadius
         layer.shadowOffset = .zero
-        layer.shadowOpacity = 1
+        layer.shadowOpacity = SettingsSinglton.shared.shadowOpacity
     }
 }

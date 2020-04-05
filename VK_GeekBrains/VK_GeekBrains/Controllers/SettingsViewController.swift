@@ -33,9 +33,7 @@ class SettingsViewController: UIViewController {
     let bSlider = UISlider()
     
     var settingsIsHidden = true
-    
-    var settings = SettingsSinglton.shared
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -45,16 +43,19 @@ class SettingsViewController: UIViewController {
         setViews()
         setImageSettings()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     
     func setImageSettings(){
-        imageView.layer.borderWidth = settings.borderWidth
-        imageView.layer.cornerRadius = settings.cornerRadius
-        imageView.layer.borderColor = settings.borderColor
+        imageView.layer.borderWidth = SettingsSinglton.shared.borderWidth
+        imageView.layer.cornerRadius = SettingsSinglton.shared.cornerRadius * 2
+        imageView.layer.borderColor = SettingsSinglton.shared.borderColor
         
-        shadowView.layer.cornerRadius = settings.cornerRadius
-        shadowView.layer.shadowRadius = settings.shadowRadius
-        shadowView.layer.shadowOpacity = settings.shadowOpacity
-        shadowView.layer.shadowColor = settings.shadowColor
+        shadowView.layer.cornerRadius = SettingsSinglton.shared.cornerRadius * 2
+        shadowView.layer.shadowRadius = SettingsSinglton.shared.shadowRadius
+        shadowView.layer.shadowOpacity = SettingsSinglton.shared.shadowOpacity
+        shadowView.layer.shadowColor = SettingsSinglton.shared.shadowColor
     }
     //Расстановка всех элементов интерфейса настроек
     func  setViews(){
@@ -169,17 +170,17 @@ class SettingsViewController: UIViewController {
             labelSecond.text = "Закругление"
             colorLabel.text = "Цвет рамки"
             
-            firstStepper.value = Double(settings.borderWidth)
+            firstStepper.value = Double(SettingsSinglton.shared.borderWidth)
             firstStepper.minimumValue = 0
             firstStepper.maximumValue = 10
             firstStepper.stepValue = 1
             
-            secondStepper.value = Double(settings.cornerRadius)
+            secondStepper.value = Double(SettingsSinglton.shared.cornerRadius)
             secondStepper.minimumValue = 0
             secondStepper.maximumValue = 35
             secondStepper.stepValue = 5
             
-            let arrColor = settings.borderColor.components
+            let arrColor = SettingsSinglton.shared.borderColor.components
             rSlider.value = Float(arrColor?[0] ?? 0)
             gSlider.value = Float(arrColor?[1] ?? 0)
             bSlider.value = Float(arrColor?[2] ?? 0)
@@ -189,17 +190,17 @@ class SettingsViewController: UIViewController {
             labelSecond.text = "Непрозрачность"
             colorLabel.text = "Цвет тени"
             
-            firstStepper.value = Double(settings.shadowRadius)
+            firstStepper.value = Double(SettingsSinglton.shared.shadowRadius)
             firstStepper.minimumValue = 0
             firstStepper.maximumValue = 15
             firstStepper.stepValue = 1
             
-            secondStepper.value = Double(settings.shadowOpacity)
+            secondStepper.value = Double(SettingsSinglton.shared.shadowOpacity)
             secondStepper.minimumValue = 0
             secondStepper.maximumValue = 1
             secondStepper.stepValue = 0.1
             
-            let arrColor = settings.shadowColor.components
+            let arrColor = SettingsSinglton.shared.shadowColor.components
             rSlider.value = Float(arrColor?[0] ?? 0)
             gSlider.value = Float(arrColor?[1] ?? 0)
             bSlider.value = Float(arrColor?[2] ?? 0)
@@ -211,15 +212,15 @@ class SettingsViewController: UIViewController {
     @objc private func setFirstSettings(){
         switch settingsPicker.selectView! {
         case SelectView.image:
-            settings.borderWidth = CGFloat(firstStepper.value)
-            settings.cornerRadius = CGFloat(secondStepper.value)
-            settings.borderColor = CGColor(srgbRed: CGFloat(rSlider.value), green: CGFloat(gSlider.value), blue: CGFloat(bSlider.value), alpha: 1)
+            SettingsSinglton.shared.borderWidth = CGFloat(firstStepper.value)
+            SettingsSinglton.shared.cornerRadius = CGFloat(secondStepper.value)
+            SettingsSinglton.shared.borderColor = CGColor(srgbRed: CGFloat(rSlider.value), green: CGFloat(gSlider.value), blue: CGFloat(bSlider.value), alpha: 1)
           
         case SelectView.shadow:
             
-            settings.shadowRadius = CGFloat(firstStepper.value)
-            settings.shadowOpacity = Float(secondStepper.value)
-            settings.shadowColor = CGColor(srgbRed: CGFloat(rSlider.value), green: CGFloat(gSlider.value), blue: CGFloat(bSlider.value), alpha: 1)
+            SettingsSinglton.shared.shadowRadius = CGFloat(firstStepper.value)
+            SettingsSinglton.shared.shadowOpacity = Float(secondStepper.value)
+            SettingsSinglton.shared.shadowColor = CGColor(srgbRed: CGFloat(rSlider.value), green: CGFloat(gSlider.value), blue: CGFloat(bSlider.value), alpha: 1)
         }
         setImageSettings()
     }

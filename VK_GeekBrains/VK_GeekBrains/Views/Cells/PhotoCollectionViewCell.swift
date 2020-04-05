@@ -12,6 +12,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let reusedID = "PhotoCollectionViewCell"
     
+    var likeControl = LikeControl()
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
@@ -42,6 +44,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         addSubview(shadowView)
         addSubview(imageView)
         
+        setLikeControl()
         
         imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
@@ -57,4 +60,18 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    
+    func setLikeControl() {
+        
+        addSubview(likeControl)
+        likeControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        likeControl.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0).isActive = true
+        likeControl.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0).isActive = true
+        likeControl.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.2).isActive = true
+        likeControl.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.2).isActive = true
+    }
+    
 }

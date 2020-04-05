@@ -17,7 +17,9 @@ class MyFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FriendsToPhotoSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -26,6 +28,9 @@ class MyFriendViewController: UIViewController {
                 controller.title = friends.list[indexPath.row].name
             }
         }
+    }
+    func updateTableView(){
+        tableView.reloadData()
     }
 }
 extension MyFriendViewController: UITableViewDelegate{

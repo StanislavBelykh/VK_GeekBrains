@@ -22,6 +22,7 @@
 		85446992243354DC0070033A /* AllCommunityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85446991243354DC0070033A /* AllCommunityTableViewCell.swift */; };
 		85589338243763A100B9C310 /* SettingsPikerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85589337243763A100B9C310 /* SettingsPikerControl.swift */; };
 		8558933A2437743900B9C310 /* SettingsSinglton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855893392437743900B9C310 /* SettingsSinglton.swift */; };
+		856264BE2438D02D00D10B56 /* likeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856264BD2438D02D00D10B56 /* likeControl.swift */; };
 		85695AD324332B350037DCA2 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85695AD224332B350037DCA2 /* Users.swift */; };
 		85695AD5243331B80037DCA2 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85695AD4243331B80037DCA2 /* Groups.swift */; };
 		85695AD8243333310037DCA2 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85695AD7243333310037DCA2 /* FriendTableViewCell.swift */; };
@@ -49,6 +50,7 @@
 		85446991243354DC0070033A /* AllCommunityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommunityTableViewCell.swift; sourceTree = "<group>"; };
 		85589337243763A100B9C310 /* SettingsPikerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPikerControl.swift; sourceTree = "<group>"; };
 		855893392437743900B9C310 /* SettingsSinglton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSinglton.swift; sourceTree = "<group>"; };
+		856264BD2438D02D00D10B56 /* likeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likeControl.swift; sourceTree = "<group>"; };
 		85695AD224332B350037DCA2 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		85695AD4243331B80037DCA2 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
 		85695AD7243333310037DCA2 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				85B0BBC32437359500B3953B /* AvatarView.swift */,
 				85B0BBC52437375500B3953B /* ShadowView.swift */,
 				85589337243763A100B9C310 /* SettingsPikerControl.swift */,
+				856264BD2438D02D00D10B56 /* likeControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				85589338243763A100B9C310 /* SettingsPikerControl.swift in Sources */,
 				85344CF0243351060048AB5D /* GalleryCollectionView.swift in Sources */,
+				856264BE2438D02D00D10B56 /* likeControl.swift in Sources */,
 				85695AD324332B350037DCA2 /* Users.swift in Sources */,
 				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,
 				85446992243354DC0070033A /* AllCommunityTableViewCell.swift in Sources */,

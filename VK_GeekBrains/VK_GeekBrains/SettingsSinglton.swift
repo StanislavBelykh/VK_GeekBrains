@@ -13,13 +13,13 @@ class SettingsSinglton {
     static var shared = SettingsSinglton()
     
     var borderWidth:CGFloat = 3
-    var cornerRadius:CGFloat = 5
-    var borderColor:CGColor = CGColor(srgbRed: 150/255, green: 0, blue: 0, alpha: 1)
+    var cornerRadius:CGFloat = 35
+    var borderColor:CGColor = CGColor(srgbRed: 94/255, green: 170/255, blue: 241/255, alpha: 1)
     
     
     var shadowRadius:CGFloat = 8
     var shadowOpacity:Float = 1
-    var shadowColor:CGColor = CGColor(srgbRed: 1, green: 1, blue: 1, alpha: 1)
+    var shadowColor:CGColor = CGColor(srgbRed: 180/255, green: 156/255, blue: 246/255, alpha: 1)
     
     private init(){}
 }
