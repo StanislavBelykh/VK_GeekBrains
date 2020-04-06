@@ -1,5 +1,5 @@
 //
-//  likeControl.swift
+//  LikeControl.swift
 //  VK_GeekBrains
 //
 //  Created by Станислав on 04.04.2020.

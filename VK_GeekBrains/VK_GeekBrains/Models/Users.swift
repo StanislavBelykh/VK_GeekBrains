@@ -14,7 +14,20 @@ struct Users {
         list = [
             User(name: "Cheburator", avatar: "Cheburashka", image: ["Che1","Che2","Che3","Che4"]),
             User(name: "SpongeBob", avatar: "SpongeBob", image: ["SpongeBob1","SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]),
+            User(name: "Voodi", avatar: "Voodi", image: ["Voodi1","Voodi2"]),
+            User(name: "Cheburator", avatar: "Cheburashka", image: ["Che1","Che2","Che3","Che4"]),
+            User(name: "SpongeBob", avatar: "SpongeBob", image: ["SpongeBob1","SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]),
+            User(name: "Voodi", avatar: "Voodi", image: ["Voodi1","Voodi2"]),
+            User(name: "Cheburator", avatar: "Cheburashka", image: ["Che1","Che2","Che3","Che4"]),
+            User(name: "SpongeBob", avatar: "SpongeBob", image: ["SpongeBob1","SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]),
+            User(name: "Voodi", avatar: "Voodi", image: ["Voodi1","Voodi2"]),
+            User(name: "Cheburator", avatar: "Cheburashka", image: ["Che1","Che2","Che3","Che4"]),
+            User(name: "SpongeBob", avatar: "SpongeBob", image: ["SpongeBob1","SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]),
+            User(name: "Voodi", avatar: "Voodi", image: ["Voodi1","Voodi2"]),
+            User(name: "Cheburator", avatar: "Cheburashka", image: ["Che1","Che2","Che3","Che4"]),
+            User(name: "SpongeBob", avatar: "SpongeBob", image: ["SpongeBob1","SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]),
             User(name: "Voodi", avatar: "Voodi", image: ["Voodi1","Voodi2"])
+
         ]
     }
 }
