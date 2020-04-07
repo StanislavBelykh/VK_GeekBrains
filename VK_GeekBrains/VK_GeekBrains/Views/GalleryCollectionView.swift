@@ -16,7 +16,7 @@ class GalleryCollectionView: UICollectionView{
         let layout = UICollectionViewFlowLayout()
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         delegate = self
         dataSource = self
@@ -24,9 +24,10 @@ class GalleryCollectionView: UICollectionView{
         register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.reusedID)
         
         translatesAutoresizingMaskIntoConstraints = false
+        
         layout.minimumLineSpacing = Constants.galleryMinimumLineSpacing
         contentInset = UIEdgeInsets(top: Constants.topDistanceToView, left: Constants.leftDistanceToView, bottom: 0, right: Constants.rightDistanceToView)
-        
+    
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
     }

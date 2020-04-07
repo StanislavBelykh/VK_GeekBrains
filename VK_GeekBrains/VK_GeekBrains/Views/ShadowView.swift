@@ -10,13 +10,19 @@ import UIKit
 
 class ShadowView: UIView {
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        setLayout()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(setLayout), name: SettingsSinglton.notificationName, object: nil)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+    }
+    
+    @objc func setLayout(){
         layer.cornerRadius = SettingsSinglton.shared.cornerRadius
         layer.shadowColor = SettingsSinglton.shared.shadowColor
         layer.shadowRadius = SettingsSinglton.shared.shadowRadius

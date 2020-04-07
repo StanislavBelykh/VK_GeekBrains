@@ -25,9 +25,6 @@ class SettingsViewController: UIViewController {
     let firstStepper = UIStepper()
     let secondStepper = UIStepper()
     
-//    let textFieldFirst = UITextField()
-//    let textFieldSecond = UITextField()
-    
     let rSlider = UISlider()
     let gSlider = UISlider()
     let bSlider = UISlider()
@@ -67,7 +64,6 @@ class SettingsViewController: UIViewController {
         settingsPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         settingsPicker.topAnchor.constraint(equalTo: settingsLabel.bottomAnchor, constant: 20).isActive = true
         settingsPicker.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
         settingsPicker.translatesAutoresizingMaskIntoConstraints = false
         
         labelFirst.isHidden = settingsIsHidden
@@ -177,7 +173,7 @@ class SettingsViewController: UIViewController {
             
             secondStepper.value = Double(SettingsSinglton.shared.cornerRadius)
             secondStepper.minimumValue = 0
-            secondStepper.maximumValue = 35
+            secondStepper.maximumValue = 40
             secondStepper.stepValue = 5
             
             let arrColor = SettingsSinglton.shared.borderColor.components
@@ -223,6 +219,7 @@ class SettingsViewController: UIViewController {
             SettingsSinglton.shared.shadowColor = CGColor(srgbRed: CGFloat(rSlider.value), green: CGFloat(gSlider.value), blue: CGFloat(bSlider.value), alpha: 1)
         }
         setImageSettings()
+        SettingsSinglton.shared.notificate()
     }
 
 }
