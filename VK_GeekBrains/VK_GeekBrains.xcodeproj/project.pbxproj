@@ -30,7 +30,7 @@
 		85B0BBC42437359500B3953B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC32437359500B3953B /* AvatarView.swift */; };
 		85B0BBC62437375500B3953B /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC52437375500B3953B /* ShadowView.swift */; };
 		85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC72437564A00B3953B /* SettingsViewController.swift */; };
-		85C7CCDF243CA8580012557F /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C7CCDE243CA8580012557F /* Empty.xib */; };
+		85C7CCE2243E132C0012557F /* FooterForTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7CCE1243E132C0012557F /* FooterForTable.swift */; };
 		85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +60,7 @@
 		85B0BBC32437359500B3953B /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		85B0BBC52437375500B3953B /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		85B0BBC72437564A00B3953B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		85C7CCDE243CA8580012557F /* Empty.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Empty.xib; sourceTree = "<group>"; };
+		85C7CCE1243E132C0012557F /* FooterForTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterForTable.swift; sourceTree = "<group>"; };
 		85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +96,6 @@
 			children = (
 				852787892431FBEE00078C48 /* AppDelegate.swift */,
 				8527878B2431FBEE00078C48 /* SceneDelegate.swift */,
-				85C7CCDE243CA8580012557F /* Empty.xib */,
 				85344CEE2433504E0048AB5D /* Views */,
 				85695AD6243332990037DCA2 /* Models */,
 				852787A72432353800078C48 /* Controllers */,
@@ -128,9 +127,8 @@
 				85344CEF243351050048AB5D /* GalleryCollectionView.swift */,
 				85B0BBC32437359500B3953B /* AvatarView.swift */,
 				85B0BBC52437375500B3953B /* ShadowView.swift */,
-				85589337243763A100B9C310 /* SettingsPikerControl.swift */,
-				856264BD2438D02D00D10B56 /* LikeControl.swift */,
-				856264BF243A5EEF00D10B56 /* LettersControl.swift */,
+				85C7CCE1243E132C0012557F /* FooterForTable.swift */,
+				85C7CCE0243E12FA0012557F /* Controls */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -154,6 +152,16 @@
 				85695AD4243331B80037DCA2 /* Groups.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		85C7CCE0243E12FA0012557F /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				85589337243763A100B9C310 /* SettingsPikerControl.swift */,
+				856264BD2438D02D00D10B56 /* LikeControl.swift */,
+				856264BF243A5EEF00D10B56 /* LettersControl.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,7 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				852787962431FBF200078C48 /* LaunchScreen.storyboard in Resources */,
-				85C7CCDF243CA8580012557F /* Empty.xib in Resources */,
 				852787932431FBF200078C48 /* Assets.xcassets in Resources */,
 				852787912431FBEE00078C48 /* Main.storyboard in Resources */,
 			);
@@ -241,6 +248,7 @@
 				8527878A2431FBEE00078C48 /* AppDelegate.swift in Sources */,
 				852787A4243234A000078C48 /* MyCommunityViewController.swift in Sources */,
 				85695AD8243333310037DCA2 /* FriendTableViewCell.swift in Sources */,
+				85C7CCE2243E132C0012557F /* FooterForTable.swift in Sources */,
 				8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */,
 				85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */,
 				856264C0243A5EEF00D10B56 /* LettersControl.swift in Sources */,

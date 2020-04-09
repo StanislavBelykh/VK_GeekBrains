@@ -24,17 +24,19 @@ class MyFriendViewController: UIViewController {
     }
     
     var friends = Users().list
-    var firstLettersOfFriends = [Character]()
+    var friendsDict = [Character:[User]]()
     
-    var filtredFriends = [User]()
-    
+    var firstLettersOfFriends:[Character]{
+        get{
+            return [Character](friendsDict.keys).sorted()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setFilterFriends()
-        
+
+        getFilterFriendsForSection()
         setSearchController()
-        getFirstLettersToFtiend()
         setLettersControl()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -52,11 +54,14 @@ class MyFriendViewController: UIViewController {
             }
         }
     }
-    func setFilterFriends() {
-        friends = friends.sorted(by: { (firstUser, secondUser) -> Bool in
-            firstUser.name < secondUser.name
-        })
-        
+    func getFilterFriendsForSection(){
+        for friend in friends {
+            if friendsDict.keys.contains(friend.name.first ?? Character("")){
+                friendsDict[friend.name.first!]?.append(friend)
+            } else {
+                friendsDict[friend.name.first!] = [friend]
+            }
+        }
     }
     private func setSearchController() {
         searchController.searchResultsUpdater = self
@@ -67,15 +72,7 @@ class MyFriendViewController: UIViewController {
         
     }
     
-    private func getFirstLettersToFtiend() {
-        let firstLetters = friends.map{ $0.name.first!}
-        for letter in firstLetters {
-            if !firstLettersOfFriends.contains(letter){
-                firstLettersOfFriends.append(letter)
-            }
-        }
-        firstLettersOfFriends = firstLettersOfFriends.sorted()
-    }
+
     
     private func setLettersControl(){
         
@@ -90,11 +87,12 @@ class MyFriendViewController: UIViewController {
         lettersControl.widthAnchor.constraint(equalToConstant: 20).isActive = true
         lettersControl.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
+    
     @objc func scrollToSelectedLetter(){
         let selectLetter = lettersControl.selectedLetter
-        for (index,friend) in friends.enumerated(){
-            if friend.name.first == selectLetter{
-                tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+        for indexSextion in 0..<firstLettersOfFriends.count{
+            if selectLetter == firstLettersOfFriends[indexSextion]{
+                tableView.scrollToRow(at: IndexPath(row: 0, section: indexSextion), at: .top, animated: true)
                 break
             }
         }
@@ -116,7 +114,7 @@ extension MyFriendViewController: UISearchResultsUpdating{
             
             lettersControl.isHidden = false
         }
-        setFilterFriends()
+        friends = friends.sorted{ $0.name < $1.name }
         tableView.reloadData()
     }
 }
@@ -127,26 +125,52 @@ extension MyFriendViewController: UITableViewDelegate{
 }
 
 extension MyFriendViewController: UITableViewDataSource{
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if !searchBarIsEmpty {
+            return 1
+        }
+        return firstLettersOfFriends.count
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if !searchBarIsEmpty {
+            let label = UILabel()
+            label.text = "Результаты поиска"
+            label.textColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+            return label
+        }
+        let footer = FooterForTable()
+        footer.label.text = String(firstLettersOfFriends[section])
+        return footer
+    }
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if isFiltering {
-//            return filtredFriends.count
-//        }
-        return friends.count
-        
+        if !searchBarIsEmpty {
+            return friends.count
+        }
+        let key = firstLettersOfFriends[section]
+        if let friendsForKey = friendsDict[key]{
+            return friendsForKey.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! FriendTableViewCell
-//        var friend: User
-//        if isFiltering {
-//            friend = filtredFriends[indexPath.row]
-//        } else {
-//            friend = friends[indexPath.row]
-//        }
-        let friend = friends[indexPath.row]
-        cell.avatarImageView.image = UIImage(named: friend.avatar)
-        cell.nameLabel.text = friend.name
+        if !searchBarIsEmpty{
+            let friend = friends[indexPath.row]
+            cell.avatarImageView.image = UIImage(named: friend.avatar)
+            cell.nameLabel.text = friend.name
+            return cell
+        }
+        let key = firstLettersOfFriends[indexPath.section]
+        let friendsForKey = friendsDict[key]
+        let friend = friendsForKey?[indexPath.row]
+    
+        cell.avatarImageView.image = UIImage(named: friend?.avatar ?? "logo")
+        cell.nameLabel.text = friend?.name
         return cell
     } 
 }
