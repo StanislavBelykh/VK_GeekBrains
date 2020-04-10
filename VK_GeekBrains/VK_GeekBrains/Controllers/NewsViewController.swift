@@ -22,7 +22,6 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
        
         view().newsTableView.news = news
-        
     }
     
     func view() -> NewsView {

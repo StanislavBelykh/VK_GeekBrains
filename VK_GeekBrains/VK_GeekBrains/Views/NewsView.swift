@@ -19,6 +19,9 @@ class NewsView: UIView {
         super.layoutSubviews()
         
         addSubview(newsTableView)
+        
+        newsTableView.rowHeight = UITableView.automaticDimension
+        newsTableView.estimatedRowHeight = UITableView.automaticDimension
         newsTableView.translatesAutoresizingMaskIntoConstraints = false
         newsTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         newsTableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -37,16 +40,12 @@ class NewsTableView: UITableView {
     
     init(){
         super.init(frame: .zero, style: .grouped)
-        
-        backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
         delegate = self
         dataSource = self
         
+        backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reusedID)
-        
         translatesAutoresizingMaskIntoConstraints = false
-        
         showsVerticalScrollIndicator = false
     }
     
@@ -69,10 +68,12 @@ extension NewsTableView: UITableViewDataSource {
         let cell = dequeueReusableCell(withIdentifier: NewsTableViewCell.reusedID, for: indexPath) as! NewsTableViewCell
 
         let post = news[indexPath.row]
-        cell.avatarView.image = UIImage(contentsOfFile: "\(post.avatar)")
+        cell.avatarView.image = UIImage(named: post.avatar)
         cell.labelCreator.text = post.creator
         cell.dateLabel.text = "Здесь будет дата"
+        cell.titleLabel.text = post.title
         cell.photoView.photos = post.photos
+        cell.likeControl.likeCounter = post.likeCount
 
         return cell
     }
