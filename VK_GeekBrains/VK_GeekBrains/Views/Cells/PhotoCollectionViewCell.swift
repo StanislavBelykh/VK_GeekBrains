@@ -12,7 +12,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let reusedID = "PhotoCollectionViewCell"
     
-    var likeControl = LikeControl()
+    let likeControl = LikeControl()
     
     let imageView: UIImageView = {
         let imageView = UIImageView()

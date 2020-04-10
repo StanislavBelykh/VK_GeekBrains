@@ -20,7 +20,8 @@ class FooterForTable: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.5)
+            
         setViews()
     }
     
@@ -51,5 +52,34 @@ class FooterForTable: UIView {
         label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         
+    }
+}
+
+class FooterForSearch: UIView {
+    let label = UILabel()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setViews()
+    }
+    func setViews(){
+        addSubview(label)
+        label.textAlignment = .left
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.backgroundColor = .clear
+        label.text = "Лучшие совпадения имен"
+        layer.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
     }
 }
