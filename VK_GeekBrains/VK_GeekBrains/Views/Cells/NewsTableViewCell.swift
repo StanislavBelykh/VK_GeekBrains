@@ -45,43 +45,49 @@ class NewsTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(avatarView)
-        addSubview(labelCreator)
-        addSubview(dateLabel)
-        addSubview(titleLabel)
-        addSubview(photoView)
-        addSubview(likeControl)
+        
+        contentView.addSubview(avatarView)
+        contentView.addSubview(labelCreator)
+        contentView.addSubview(dateLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(photoView)
+        contentView.addSubview(likeControl)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
         likeControl.translatesAutoresizingMaskIntoConstraints = false
         
-        avatarView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        avatarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        avatarView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        avatarView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        labelCreator.topAnchor.constraint(equalTo: topAnchor, constant:  8).isActive = true
-        labelCreator.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor,constant: 8).isActive = true
-        labelCreator.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        dateLabel.topAnchor.constraint(equalTo: labelCreator.bottomAnchor, constant: 8).isActive = true
-        dateLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8).isActive = true
-        dateLabel.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        titleLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 8).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        
-        photoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8).isActive = true
-        photoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        photoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        photoView.heightAnchor.constraint(equalToConstant: frame.width * 4/3).isActive = true
-        
-        likeControl.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8).isActive = true
-        likeControl.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        likeControl.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        likeControl.widthAnchor.constraint(equalToConstant: 15).isActive = true
-    }
+        NSLayoutConstraint.activate([
+
+            avatarView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            avatarView.heightAnchor.constraint(equalToConstant: 50),
+            avatarView.widthAnchor.constraint(equalToConstant: 50),
+            
+            labelCreator.topAnchor.constraint(equalTo: contentView.topAnchor, constant:  8),
+            labelCreator.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor,constant: 8),
+            labelCreator.widthAnchor.constraint(equalToConstant: 150),
+            
+            dateLabel.topAnchor.constraint(equalTo: labelCreator.bottomAnchor, constant: 8),
+            dateLabel.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 8),
+            dateLabel.widthAnchor.constraint(equalToConstant: 150),
+            
+            titleLabel.topAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            
+            photoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            photoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            photoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            photoView.heightAnchor.constraint(equalToConstant: frame.width * 4/3),
+            
+            likeControl.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
+            likeControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            likeControl.heightAnchor.constraint(equalToConstant: 20),
+            likeControl.widthAnchor.constraint(equalToConstant: 20),
+            likeControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -8)
+
+        ])
+            }
 
     
     required init?(coder: NSCoder) {

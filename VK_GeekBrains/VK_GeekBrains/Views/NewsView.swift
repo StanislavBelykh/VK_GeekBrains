@@ -20,8 +20,6 @@ class NewsView: UIView {
         
         addSubview(newsTableView)
         
-        newsTableView.rowHeight = UITableView.automaticDimension
-        newsTableView.estimatedRowHeight = UITableView.automaticDimension
         newsTableView.translatesAutoresizingMaskIntoConstraints = false
         newsTableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         newsTableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -43,6 +41,8 @@ class NewsTableView: UITableView {
         delegate = self
         dataSource = self
         
+        rowHeight = UITableView.automaticDimension
+        estimatedRowHeight = UITableView.automaticDimension
         backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +56,7 @@ class NewsTableView: UITableView {
 }
 
 extension NewsTableView: UITableViewDelegate {
-    
+
 }
 
 extension NewsTableView: UITableViewDataSource {

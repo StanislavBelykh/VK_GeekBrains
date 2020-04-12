@@ -68,10 +68,13 @@ class MyFriendViewController: UIViewController {
         lettersControl.backgroundColor = .clear
         lettersControl.addTarget(self, action: #selector(scrollToSelectedLetter), for: [.touchUpInside])
         
-        lettersControl.heightAnchor.constraint(equalToConstant: CGFloat(15*lettersControl.arrChar.count)).isActive = true
-        lettersControl.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        lettersControl.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        lettersControl.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            lettersControl.heightAnchor.constraint(equalToConstant: CGFloat(15*lettersControl.arrChar.count)),
+            lettersControl.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            lettersControl.widthAnchor.constraint(equalToConstant: 20),
+            lettersControl.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
     }
     
     @objc func scrollToSelectedLetter(){
@@ -128,11 +131,9 @@ extension MyFriendViewController: UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard !firstLetters.isEmpty else {return 0}
         let key = firstLetters[section]
-        if let friendsForKey = friendsDict[key]{
-            return friendsForKey.count
-        }
-        return 0
+        return friendsDict[key]?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -144,5 +145,5 @@ extension MyFriendViewController: UITableViewDataSource{
         cell.avatarImageView.image = UIImage(named: friend?.avatar ?? "logo")
         cell.nameLabel.text = friend?.name
         return cell
-    } 
+    }
 }
