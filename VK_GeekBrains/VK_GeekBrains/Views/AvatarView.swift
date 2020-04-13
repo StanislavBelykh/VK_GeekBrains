@@ -12,16 +12,21 @@ class  AvatarView: UIImageView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.borderWidth = 2
-        layer.borderColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        layer.cornerRadius = frame.height/2
-        layer.masksToBounds = true
+        setLayout()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(setLayout), name: SettingsSinglton.notificationName, object: nil)
+  
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
+
+    }
+    
+    @objc func setLayout(){
+        layer.borderWidth = SettingsSinglton.shared.borderWidth
+        layer.borderColor = SettingsSinglton.shared.borderColor
+        layer.cornerRadius = SettingsSinglton.shared.cornerRadius
+        layer.masksToBounds = true
     }
 }

@@ -17,4 +17,8 @@ class FriendTableViewCell: UITableViewCell {
         super.awakeFromNib()
        
     }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
 }
