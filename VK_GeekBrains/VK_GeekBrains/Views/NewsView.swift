@@ -43,6 +43,8 @@ class NewsTableView: UITableView {
         
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = UITableView.automaticDimension
+        
+        
         backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reusedID)
         translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +75,7 @@ extension NewsTableView: UITableViewDataSource {
         cell.dateLabel.text = "Здесь будет дата"
         cell.titleLabel.text = post.title
         cell.photoView.photos = post.photos
-        cell.likeControl.likeCounter = post.likeCount
+        cell.likeControl.setLike(count: post.likeCount)
 
         return cell
     }

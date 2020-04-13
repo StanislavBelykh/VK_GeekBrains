@@ -33,6 +33,10 @@ class LikeControl: UIControl {
         imageView.frame = bounds
     }
     
+    func setLike(count: Int){
+        likeCounter = count
+        setLikeCounterLabel()
+    }
     func setView() {
         
         self.addSubview(imageView)

@@ -21,6 +21,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        title = "Новости"
         view().newsTableView.news = news
 
     }

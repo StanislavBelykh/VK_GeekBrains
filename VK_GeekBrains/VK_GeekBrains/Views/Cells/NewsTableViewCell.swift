@@ -40,11 +40,28 @@ class NewsTableViewCell: UITableViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
     }()
+    let commentButton: UIButton = {
+        let commentButton = UIButton()
+        commentButton.setImage(UIImage(systemName: "bubble.right"), for: .normal)
+        commentButton.translatesAutoresizingMaskIntoConstraints = false
+        return commentButton
+    }()
+    let repostButton: UIButton = {
+        let repostButton = UIButton()
+        repostButton.setImage(UIImage(systemName: "arrowshape.turn.up.left"), for: .normal)
+        repostButton.translatesAutoresizingMaskIntoConstraints = false
+        return repostButton
+    }()
+    
     let photoView = PhotoView()
     let likeControl = LikeControl()
     
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         
         contentView.addSubview(avatarView)
         contentView.addSubview(labelCreator)
@@ -52,6 +69,8 @@ class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(photoView)
         contentView.addSubview(likeControl)
+        contentView.addSubview(commentButton)
+        contentView.addSubview(repostButton)
         
         photoView.translatesAutoresizingMaskIntoConstraints = false
         likeControl.translatesAutoresizingMaskIntoConstraints = false
@@ -81,11 +100,21 @@ class NewsTableViewCell: UITableViewCell {
             photoView.heightAnchor.constraint(equalToConstant: frame.width * 4/3),
             
             likeControl.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
-            likeControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            likeControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             likeControl.heightAnchor.constraint(equalToConstant: 20),
             likeControl.widthAnchor.constraint(equalToConstant: 20),
-            likeControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -8)
-
+            likeControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            
+            commentButton.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
+            commentButton.leadingAnchor.constraint(equalTo: likeControl.trailingAnchor, constant: 20),
+            commentButton.heightAnchor.constraint(equalToConstant: 20),
+            commentButton.widthAnchor.constraint(equalToConstant: 20),
+            
+            repostButton.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
+            repostButton.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor, constant: 20),
+            repostButton.heightAnchor.constraint(equalToConstant: 20),
+            repostButton.widthAnchor.constraint(equalToConstant: 20),
+            
         ])
             }
 

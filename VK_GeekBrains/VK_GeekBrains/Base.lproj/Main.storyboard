@@ -516,11 +516,11 @@
             </objects>
             <point key="canvasLocation" x="2150.7246376811595" y="378.34821428571428"/>
         </scene>
-        <!--Item-->
+        <!--Новости-->
         <scene sceneID="yzp-R7-sal">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qLA-Mo-XJ0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" selectedImage="house.fill" id="aQ6-pp-c3V"/>
+                    <tabBarItem key="tabBarItem" title="Новости" image="house" catalog="system" selectedImage="house.fill" id="aQ6-pp-c3V"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OuP-j5-y3l">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
