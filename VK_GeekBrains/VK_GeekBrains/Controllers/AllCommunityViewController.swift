@@ -11,11 +11,13 @@ import UIKit
 class AllCommunityViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var communites = Groups().list
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 }
 extension AllCommunityViewController: UITableViewDelegate{
