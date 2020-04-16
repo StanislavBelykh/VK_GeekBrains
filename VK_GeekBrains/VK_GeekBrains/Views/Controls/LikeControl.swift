@@ -49,7 +49,14 @@ class LikeControl: UIControl {
     }
     func setLikeCounterLabel(){
         addSubview(likeCountLabel)
-             likeCountLabel.text = String(likeCounter)
+        UIView.transition(with: likeCountLabel,
+                          duration: 0.3,
+                          options: .transitionFlipFromTop,
+                          animations: {
+                        self.likeCountLabel.text = String(self.likeCounter)
+        })
+        
+             
              likeCountLabel.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
              likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
