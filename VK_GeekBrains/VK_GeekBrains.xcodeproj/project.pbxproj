@@ -37,6 +37,7 @@
 		85B0BBC62437375500B3953B /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC52437375500B3953B /* ShadowView.swift */; };
 		85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC72437564A00B3953B /* SettingsViewController.swift */; };
 		85C7CCE2243E132C0012557F /* FooterForTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7CCE1243E132C0012557F /* FooterForTable.swift */; };
+		85E31694244999C400B8DD10 /* PresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E31693244999C400B8DD10 /* PresenterViewController.swift */; };
 		85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		85B0BBC52437375500B3953B /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		85B0BBC72437564A00B3953B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		85C7CCE1243E132C0012557F /* FooterForTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterForTable.swift; sourceTree = "<group>"; };
+		85E31693244999C400B8DD10 /* PresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterViewController.swift; sourceTree = "<group>"; };
 		85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 				8527879D243207CE00078C48 /* LoginViewController.swift */,
 				8527879F2432345E00078C48 /* MyFriendViewController.swift */,
 				852787A12432347A00078C48 /* PhotoToFriendViewController.swift */,
+				85E31693244999C400B8DD10 /* PresenterViewController.swift */,
 				852787A3243234A000078C48 /* MyCommunityViewController.swift */,
 				852787A5243234BA00078C48 /* AllCommunityViewController.swift */,
 				8580888A2440FBAD00D9CE05 /* NewsViewController.swift */,
@@ -255,6 +258,7 @@
 			files = (
 				85589338243763A100B9C310 /* SettingsPikerControl.swift in Sources */,
 				85344CF0243351060048AB5D /* GalleryCollectionView.swift in Sources */,
+				85E31694244999C400B8DD10 /* PresenterViewController.swift in Sources */,
 				856264BE2438D02D00D10B56 /* LikeControl.swift in Sources */,
 				85695AD324332B350037DCA2 /* Users.swift in Sources */,
 				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,

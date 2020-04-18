@@ -50,6 +50,7 @@ class LoadingViewController: UIViewController {
                     } else {
                        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                         let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                        loginViewController.modalPresentationStyle = .fullScreen
                         self.present(loginViewController, animated: true, completion: nil)
                     }
                 }

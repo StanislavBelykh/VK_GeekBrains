@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoToFriendViewController: UIViewController {
+class PhotoToFriendViewController: UIViewController, PhotoToFriendViewControllerDelegate {
     
     private var galleryCollectionView = GalleryCollectionView()
     
@@ -17,6 +17,7 @@ class PhotoToFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        galleryCollectionView.presentDelegate = self
         view.addSubview(galleryCollectionView)
         galleryCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         galleryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -27,4 +28,15 @@ class PhotoToFriendViewController: UIViewController {
         galleryCollectionView.reloadData()
 
     }
+    func showPresenter(photos: [String], selectedPhoto: Int){
+        let presentVC = PresenterViewController()
+        presentVC.photos = photos
+        presentVC.selectedPhoto = selectedPhoto
+        presentVC.modalPresentationStyle = .automatic
+        presentVC.modalTransitionStyle = .coverVertical
+        navigationController?.pushViewController(presentVC, animated: true)
+    }
+
 }
+
+
