@@ -10,7 +10,7 @@ import UIKit
 
 class PresenterViewController: UIViewController {
     
-    var photos =  ["SpongeBob1"]//,"SpongeBob2","SpongeBob3","SpongeBob4","SpongeBob5"]
+    var photos = [String]()
     var selectedPhoto = 0
     
     var leftImageView: UIImageView!

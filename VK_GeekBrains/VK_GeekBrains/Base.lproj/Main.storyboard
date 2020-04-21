@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Khq-Fa-TU8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -197,7 +197,7 @@
                     <navigationItem key="navigationItem" title="Сообщества" id="11n-u4-14U">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z1C-Ri-nqZ">
                             <connections>
-                                <segue destination="xhI-1E-Mhh" kind="presentation" modalPresentationStyle="pageSheet" id="aSc-B1-O2i"/>
+                                <segue destination="xhI-1E-Mhh" kind="show" id="aSc-B1-O2i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -230,11 +230,11 @@
             <objects>
                 <viewController id="xhI-1E-Mhh" customClass="AllCommunityViewController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qQE-s3-oyV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0XX-dJ-Plf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allCommunityCell" rowHeight="86" id="Ag9-u0-N3y" customClass="AllCommunityTableViewCell" customModule="VK_GeekBrains" customModuleProvider="target">
@@ -505,7 +505,7 @@
         <!--Сообщества-->
         <scene sceneID="4mZ-m4-WEg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-ao-KzQ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLX-ao-KzQ" customClass="CustomNavigationController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Сообщества" image="person.3" catalog="system" selectedImage="person.3.fill" id="IOh-L0-YbW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vSg-Ma-wcG">

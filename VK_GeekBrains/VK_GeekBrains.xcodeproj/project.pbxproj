@@ -31,6 +31,7 @@
 		858088872440C00C00D9CE05 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858088862440C00C00D9CE05 /* News.swift */; };
 		858088892440C70100D9CE05 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858088882440C70100D9CE05 /* NewsTableViewCell.swift */; };
 		8580888B2440FBAD00D9CE05 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8580888A2440FBAD00D9CE05 /* NewsViewController.swift */; };
+		85914797244EE2B600881878 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85914796244EE2B600881878 /* CustomNavigationController.swift */; };
 		85A38048244712C8002649EE /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38047244712C8002649EE /* LoadingViewController.swift */; };
 		85A3804A2447699D002649EE /* LoadingDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A380492447699D002649EE /* LoadingDotView.swift */; };
 		85B0BBC42437359500B3953B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85B0BBC32437359500B3953B /* AvatarView.swift */; };
@@ -68,6 +69,7 @@
 		858088862440C00C00D9CE05 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		858088882440C70100D9CE05 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		8580888A2440FBAD00D9CE05 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		85914796244EE2B600881878 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		85A38047244712C8002649EE /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		85A380492447699D002649EE /* LoadingDotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDotView.swift; sourceTree = "<group>"; };
 		85B0BBC32437359500B3953B /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				8580888A2440FBAD00D9CE05 /* NewsViewController.swift */,
 				85B0BBC72437564A00B3953B /* SettingsViewController.swift */,
 				85A38047244712C8002649EE /* LoadingViewController.swift */,
+				85914796244EE2B600881878 /* CustomNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				856264BE2438D02D00D10B56 /* LikeControl.swift in Sources */,
 				85695AD324332B350037DCA2 /* Users.swift in Sources */,
 				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,
+				85914797244EE2B600881878 /* CustomNavigationController.swift in Sources */,
 				85446992243354DC0070033A /* AllCommunityTableViewCell.swift in Sources */,
 				8527879E243207CE00078C48 /* LoginViewController.swift in Sources */,
 				852787A6243234BA00078C48 /* AllCommunityViewController.swift in Sources */,

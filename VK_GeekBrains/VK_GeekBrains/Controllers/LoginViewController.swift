@@ -16,10 +16,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWasShown(notification:)),

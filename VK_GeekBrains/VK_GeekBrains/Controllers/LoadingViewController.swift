@@ -20,7 +20,7 @@ class LoadingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         leftDot.layer.cornerRadius = leftDot.bounds.height/2
         middleDot.layer.cornerRadius = middleDot.bounds.height/2
         rightDot.layer.cornerRadius = rightDot.bounds.height/2
