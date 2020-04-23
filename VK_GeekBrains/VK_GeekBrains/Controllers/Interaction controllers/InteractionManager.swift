@@ -12,39 +12,32 @@ class InteractiveManager: UIPercentDrivenInteractiveTransition {
     var interactionInProgress = false
     var shouldCompleteTransition = false
     
-    weak var viewController: UIViewController!
-    
-    private func prepareGestureRecognizer(in view: UIView) {
-        let gesture = UIScreenEdgePanGestureRecognizer(target: self,
-                                                       action: #selector(handleGesture(_:)))
-        gesture.edges = .left
-        view.addGestureRecognizer(gesture)
+    var viewController: UIViewController! {
+        didSet {
+            let gesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+            gesture.edges = .left
+            viewController?.view.addGestureRecognizer(gesture)
+        }
     }
     
     @objc func handleGesture(_ gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-
         switch gestureRecognizer.state {
         case .began:
             interactionInProgress = true
-            viewController.dismiss(animated: true, completion: nil)
+            viewController.navigationController?.popViewController(animated: true)
         case .changed:
             let translation = gestureRecognizer.translation(in: gestureRecognizer.view)
-            let relativeTranslation = translation.x / 20
+            let relativeTranslation = abs(translation.x) / 50
             let progress = max(0, min(1, relativeTranslation))
             
-            shouldCompleteTransition = progress > 0.5
+            shouldCompleteTransition = progress > 0.35
             update(progress)
         case .cancelled:
             interactionInProgress = false
             cancel()
-            
         case .ended:
             interactionInProgress = false
-            if shouldCompleteTransition {
-                finish()
-            } else {
-                cancel()
-            }
+            shouldCompleteTransition ? finish() : cancel()
         default:
             break
         }

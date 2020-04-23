@@ -14,7 +14,6 @@ class CustomNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        transitioningDelegate = self
     }
     
     func navigationController(_ navigationController: UINavigationController,
@@ -27,7 +26,10 @@ class CustomNavigationController: UINavigationController {
 
 extension CustomNavigationController: UINavigationControllerDelegate {
     
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
             self.interactiveTransition.viewController = toVC
             return PushAnimator()

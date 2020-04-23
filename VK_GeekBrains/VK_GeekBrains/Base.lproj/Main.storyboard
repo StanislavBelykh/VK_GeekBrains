@@ -485,7 +485,7 @@
         <!--Друзья-->
         <scene sceneID="rEq-oP-FTU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="agU-u6-EnR" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="agU-u6-EnR" customClass="CustomNavigationController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.fill" catalog="system" selectedImage="person" id="tsP-Kq-Gl0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hyT-u1-NOQ">
