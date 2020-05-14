@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct NetworkConstants {
+    let clientID = "7437299"
+    let scope = "401502"
+    let versionAPI = "5.103"
+}

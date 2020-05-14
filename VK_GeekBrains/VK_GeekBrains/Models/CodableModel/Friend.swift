@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct Friend: Codable {
+    let id: Int
+    let firstName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, firstName = "first_name"
+    }
+}

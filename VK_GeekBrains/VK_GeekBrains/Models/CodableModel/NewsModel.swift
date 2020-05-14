@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+struct NewsModel: Codable {
+    let postID: Int
+    let text: String
+    
+
+    
+    enum CodingKeys: String, CodingKey {
+        case postID = "post_id", text
+    }
+}
+

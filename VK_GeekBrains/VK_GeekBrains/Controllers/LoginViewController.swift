@@ -16,9 +16,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    let networkService = NetworkingService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWasShown(notification:)),
@@ -72,6 +76,56 @@ class LoginViewController: UIViewController {
         present(alert, animated: true){
             self.loginTextField.text = nil
             self.passwordTextField.text = nil
+        }
+    }
+    @IBAction func fantastic(_ sender: Any) {
+        
+        networkService.getFriends(onComplete: { (friends) in
+            print(" ")
+            print("*** Friends ***")
+            print(friends)
+        }) { (error) in
+            print(error)
+        }
+        
+        networkService.getFiles(onComplete: { (files) in
+            print(" ")
+            print("*** Files ***")
+            print(files)
+        }) { (error) in
+            print(error)
+        }
+        
+        networkService.getPhoto(for: Session.shared.userID ?? 0, onComplete: { (photos) in
+            print(" ")
+            print("*** Photos ***")
+            print(photos)
+        }) { (error) in
+            print(error)
+        }
+        
+        networkService.getCommunity(onComplete: { (community) in
+            print(" ")
+            print("*** Community ***")
+            print(community)
+        }) { (error) in
+            print(error)
+        }
+        
+        networkService.getSearchCommunity(text: "Mercedes", onComplete: { (community) in
+            print(" ")
+            print("*** Community for search text ***")
+            print(community)
+        }) { (error) in
+            print(error)
+        }
+        
+        networkService.getNews(onComplete: { (news) in
+            print(" ")
+            print("*** News ***")
+            print(news)
+        }) { (error) in
+            print(error)
         }
     }
 }

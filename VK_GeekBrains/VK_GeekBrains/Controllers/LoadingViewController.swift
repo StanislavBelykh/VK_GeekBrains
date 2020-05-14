@@ -17,10 +17,10 @@ class LoadingViewController: UIViewController {
     @IBOutlet weak var rightDot: UIView!
     
     var counter = 0
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         leftDot.layer.cornerRadius = leftDot.bounds.height/2
         middleDot.layer.cornerRadius = middleDot.bounds.height/2
         rightDot.layer.cornerRadius = rightDot.bounds.height/2
@@ -60,10 +60,8 @@ class LoadingViewController: UIViewController {
                 self.counter += 1
                 self.animation()
             } else {
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                loginViewController.modalPresentationStyle = .fullScreen
-                self.present(loginViewController, animated: true, completion: nil)
+                let toViewController = LoginWebViewController()
+                self.present(toViewController, animated: true, completion: nil)
             }
         }
     }
