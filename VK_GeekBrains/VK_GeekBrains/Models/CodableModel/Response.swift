@@ -14,3 +14,7 @@ class Response<T: Codable>: Codable {
 class Items<T: Codable>: Codable {
     let items: [T]
 }
+
+class ResponseJoin: Codable {
+    let response: Int
+}

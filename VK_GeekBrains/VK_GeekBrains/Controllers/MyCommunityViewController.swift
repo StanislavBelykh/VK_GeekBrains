@@ -30,14 +30,19 @@ class MyCommunityViewController: UIViewController {
         if segue.identifier == "addCommunitySegue" {
             let allCommunityController = segue.source as! AllCommunityViewController
             self.navigationController?.pushViewController(allCommunityController, animated: true)
-
-//            if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
-//                let community = allCommunityController.communites[indexPath.row]
-//                if !myCommunites.contains(community){
-//                    myCommunites.append(community)
-//                    tableView.reloadData()
-//                }
-//            }
+            if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
+                let community = allCommunityController.communites[indexPath.row]
+                networkService.joinCommunity(id: community.id, onComplete: { (value) in
+                    if value == 1 {
+                        print("Запрос на вступление в группу отправлен")
+                    } else {
+                        print("Запрос отклонен")
+                    }
+                    self.tableView.reloadData()
+                }) { (error) in
+                    print(error)
+                }
+            }
         }
     }
 }

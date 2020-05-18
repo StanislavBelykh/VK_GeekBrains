@@ -169,6 +169,34 @@ class NetworkingService {
         task.resume()
     }
     
+    func joinCommunity(id: Int, onComplete: @escaping (Int) -> Void, onError: @escaping (Error) -> Void) {
+        urlConstructor.path = "/method/groups.search"
+        
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "group_id", value: String(id)),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: constants.versionAPI),
+        ]
+        let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
+            
+            if error != nil {
+                onError(ServerError.errorTask)
+            }
+            
+            guard let data = data else {
+                onError(ServerError.noDataProvided)
+                return
+            }
+            guard let response = try? JSONDecoder().decode(ResponseJoin.self, from: data).response else {
+                onError(ServerError.failedToDecode)
+                return
+            }
+            DispatchQueue.main.async {
+                onComplete(response)
+            }
+        }
+        task.resume()
+    }
     
     //MARK: - Friends User
     func getFriends(onComplete: @escaping ([Friend]) -> Void, onError: @escaping (Error) -> Void) {

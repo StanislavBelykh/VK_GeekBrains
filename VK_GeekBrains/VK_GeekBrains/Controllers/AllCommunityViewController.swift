@@ -13,6 +13,7 @@ class AllCommunityViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var searchController: UISearchController!
+    var searchText = ""
     
     var imageService: ImageService?
     let networkService = NetworkingService()
@@ -29,13 +30,9 @@ class AllCommunityViewController: UIViewController {
 }
 extension AllCommunityViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            self.communites.removeAll()
-            self.tableView.reloadData()
             return
         }
-         
         if !isSearching {
             isSearching.toggle()
             networkService.getSearchCommunity(text: searchText, onComplete: { [weak self] (communites) in
@@ -47,6 +44,14 @@ extension AllCommunityViewController: UISearchResultsUpdating, UISearchBarDelega
                 print(error)
             }
         }
+    }
+    func  searchBarTextDidBeginEditing ( _  searchBar : UISearchBar) {
+        communites.removeAll()
+        tableView.reloadData()
+    }
+    func  searchBarCancelButtonClicked ( _  searchBar : UISearchBar) {
+        communites.removeAll()
+        tableView.reloadData()
     }
     
     func configureSearchController() {
