@@ -10,7 +10,7 @@ import UIKit
 
 class PresenterViewController: UIViewController {
     
-    var photos = [String]()
+    var photos = [Photo]()
     var selectedPhoto = 0
     
     var leftImageView: UIImageView!
@@ -86,9 +86,9 @@ class PresenterViewController: UIViewController {
             rightImageView.widthAnchor.constraint(equalTo: middleImageView.widthAnchor),
         ])
         
-        leftImageView.image = UIImage(named: photos[indexPhotoLeft])
-        middleImageView.image = UIImage(named: photos[indexPhotoMid])
-        rightImageView.image = UIImage(named: photos[indexPhotoRight])
+        leftImageView.loadImage(by: (photos[indexPhotoLeft].sizes?.last!.url!)!)
+        middleImageView.loadImage(by: (photos[indexPhotoMid].sizes?.last!.url!)!)
+        rightImageView.loadImage(by: (photos[indexPhotoRight].sizes?.last!.url!)!)
         
         middleImageView.layer.cornerRadius = 8
         rightImageView.layer.cornerRadius = 8
@@ -169,9 +169,7 @@ class PresenterViewController: UIViewController {
                     })
             })
         case .changed:
-            
             let translationX = recognizer.translation(in: self.view).x
-            print(translationX)
             if translationX > 0 {
                 swipeToRight.fractionComplete = abs(translationX)/100
             } else {

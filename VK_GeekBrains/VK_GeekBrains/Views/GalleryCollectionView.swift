@@ -10,13 +10,16 @@ import UIKit
 
 class GalleryCollectionView: UICollectionView{
 
-    var photos = [String]()
+    var photos = [Photo]()
+    var imageService: ImageService?
     
     weak var presentDelegate: PhotoToFriendViewControllerDelegate?
 
     init() {
         let layout = UICollectionViewFlowLayout()
         super.init(frame: .zero, collectionViewLayout: layout)
+        
+        imageService = ImageService(container: self)
         
         backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
@@ -40,7 +43,7 @@ class GalleryCollectionView: UICollectionView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(photos: [String]) {
+    func set(photos: [Photo]) {
         self.photos = photos
     }
 
@@ -58,7 +61,9 @@ extension GalleryCollectionView: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.reusedID, for: indexPath) as! PhotoCollectionViewCell
-        cell.imageView.image = UIImage(named: photos[indexPath.item])
+        guard let photoURL = photos[indexPath.item].sizes?.last?.url else { return cell }
+        
+        cell.imageView.image = imageService?.photo(atIndexpath: indexPath, byUrl: photoURL)
         return cell
     }
 }
@@ -77,5 +82,5 @@ struct Constants {
 }
 
 protocol  PhotoToFriendViewControllerDelegate: class {
-    func showPresenter(photos: [String], selectedPhoto: Int )
+    func showPresenter(photos: [Photo], selectedPhoto: Int )
 }

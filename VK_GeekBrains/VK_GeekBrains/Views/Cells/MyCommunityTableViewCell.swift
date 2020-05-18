@@ -22,6 +22,7 @@ class MyCommunityTableViewCell: UITableViewCell {
         imageCommunityView.addGestureRecognizer(tap)
         imageCommunityView.isUserInteractionEnabled = true
     }
+    
     @objc func tapOnAvatar(_ tapGestureRecognizer: UITapGestureRecognizer){
         UIView.animate(withDuration: 0.3,
                        delay: 0,

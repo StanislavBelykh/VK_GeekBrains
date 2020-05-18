@@ -6,7 +6,7 @@
 //  Copyright © 2020 Станислав. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Community: Codable {
     let id: Int
@@ -15,5 +15,9 @@ struct Community: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id, name, avatarURL = "photo_50"
+    }
+    
+    func getAvatarImage(for imageView: inout UIImageView) {
+        imageView.loadImage(by: avatarURL)
     }
 }

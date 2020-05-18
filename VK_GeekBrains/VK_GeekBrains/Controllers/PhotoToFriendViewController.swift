@@ -10,9 +10,10 @@ import UIKit
 
 class PhotoToFriendViewController: UIViewController, PhotoToFriendViewControllerDelegate {
     
-    private var galleryCollectionView = GalleryCollectionView()
+    var galleryCollectionView = GalleryCollectionView()
+    var userID: Int?
     
-    var photosToFriend = [String]()
+    let networkService = NetworkingService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,15 @@ class PhotoToFriendViewController: UIViewController, PhotoToFriendViewController
         galleryCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         galleryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        galleryCollectionView.set(photos: photosToFriend)
-        galleryCollectionView.reloadData()
-
+        networkService.getPhoto(for: userID, onComplete: { [weak self] (photos) in
+            self?.galleryCollectionView.set(photos: photos)
+            self?.galleryCollectionView.reloadData()
+        }) { (error) in
+            print(error)
+        }
     }
-    func showPresenter(photos: [String], selectedPhoto: Int){
+    
+    func showPresenter(photos: [Photo], selectedPhoto: Int){
         let presentVC = PresenterViewController()
         presentVC.photos = photos
         presentVC.selectedPhoto = selectedPhoto

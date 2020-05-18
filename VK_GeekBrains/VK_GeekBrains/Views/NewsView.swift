@@ -27,14 +27,15 @@ class NewsView: UIView {
         newsTableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
     
-    func setNews(news: [News]) {
+    func setNews(news: [NewsModel]) {
         self.newsTableView.news = news
     }
 }
 
 class NewsTableView: UITableView {
     
-    var news = [News]()
+    var news = [NewsModel]()
+    var imageServise: ImageService?
     
     init(){
         super.init(frame: .zero, style: .grouped)
@@ -43,7 +44,7 @@ class NewsTableView: UITableView {
         
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = UITableView.automaticDimension
-        
+        imageServise = ImageService(container: self)
         
         backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reusedID)
@@ -70,12 +71,21 @@ extension NewsTableView: UITableViewDataSource {
         let cell = dequeueReusableCell(withIdentifier: NewsTableViewCell.reusedID, for: indexPath) as! NewsTableViewCell
 
         let post = news[indexPath.row]
-        cell.avatarView.image = UIImage(named: post.avatar)
-        cell.labelCreator.text = post.creator
-        cell.dateLabel.text = "Здесь будет дата"
-        cell.titleLabel.text = post.title
-        cell.photoView.photos = post.photos
-        cell.likeControl.setLike(count: post.likeCount)
+        //let photosURL = post.attachments.compactMap({ $0.photo?.sizes?.last?.url })
+        
+
+//        cell.avatarView.image = UIImage(named: post.avatar)
+//        cell.labelCreator.text = post.creator
+        cell.dateLabel.text = post.getStringDate()
+        cell.titleLabel.text = post.text
+        var photos = [UIImage?]()
+        
+        guard let photosURL = post.photosURL else {return cell}
+        for photoURL in photosURL {
+            photos.append(imageServise?.photo(atIndexpath: indexPath, byUrl: photoURL))
+        }
+        cell.photoView.photos = photos
+//        cell.likeControl.setLike(count: post.likeCount)
 
         return cell
     }

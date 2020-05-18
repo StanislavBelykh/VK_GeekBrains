@@ -19,9 +19,13 @@ class MyFriendViewController: UIViewController {
         }
         return text.isEmpty
     }
+    var imageService: ImageService?
+    let networkService = NetworkingService()
     
-    let data = Users()
-    var friendsDict = [Character:[User]]()
+    var data = [Friend]()
+    var friends = [Friend]()
+    var friendsDict = [Character:[Friend]]()
+    
     var firstLetters: [Character] {
         get {
             friendsDict.keys.sorted()
@@ -30,26 +34,48 @@ class MyFriendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendsDict = Users().getSortedUsers(searchText: nil)
         
+        networkService.getFriends(onComplete: { [weak self] (friends) in
+            let tmpFriends = friends.filter{ !$0.lastName.isEmpty }
+            self?.data = tmpFriends
+            self?.friendsDict = self?.getSortedUsers(searchText: nil, list: tmpFriends) ?? [Character : [Friend]]()
+            self?.tableView.reloadData()
+            self?.setLettersControl()
+        }) { (error) in
+            print(error)
+        }
+        imageService = ImageService(container: tableView)
         setSearchController()
-        setLettersControl()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FriendsToPhotoSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! PhotoToFriendViewController
                 let users = friendsDict[firstLetters[indexPath.section]]
-                let user = users?[indexPath.row]
-                controller.photosToFriend = user?.image ?? [String]()
-                controller.title = user?.name
+                guard let user = users?[indexPath.row] else { return }
+                
+                controller.userID = user.id
+                controller.title = user.firstName + " " + user.lastName
             }
         }
     }
+    private func getSortedUsers(searchText: String? , list: [Friend]) -> [Character:[Friend]]{
+        var tempUsers: [Friend]
+        if let text = searchText?.lowercased(), searchText != "" {
+            tempUsers = list.filter{ $0.lastName.lowercased().contains(text) || $0.firstName.lowercased().contains(text) }
+        } else {
+            tempUsers = list
+        }
+        let sortedUsers = Dictionary.init(grouping: tempUsers) { $0.lastName.lowercased().first ?? "#" }
+            .mapValues{ $0.sorted{ $0.lastName.lowercased() < $1.lastName.lowercased() } }
+        return sortedUsers
+    }
+    
     private func setSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -60,6 +86,7 @@ class MyFriendViewController: UIViewController {
     }
     
     private func setLettersControl(){
+        
         
         view.addSubview(lettersControl)
         
@@ -94,7 +121,8 @@ extension MyFriendViewController: UISearchResultsUpdating{
     }
     
     private func filterFriendForSearchText(_ searchText: String){
-        friendsDict = data.getSortedUsers(searchText: searchText)
+        friendsDict = self.getSortedUsers(searchText: searchText, list: data)
+        
         if searchText == "" {
             lettersControl.isHidden = false
         }else{
@@ -126,22 +154,13 @@ extension MyFriendViewController: UITableViewDataSource{
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if searchBarIsEmpty {
-            return friendsDict.keys.count
-        } else {
-            return 1
-        }
-        
+        return friendsDict.keys.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if searchBarIsEmpty {
-            let footer = FooterForTable()
-            footer.label.text = String(firstLetters[section].uppercased())
-            return footer
-        } else {
-            let footer = FooterForSearch()
-            return footer
-        }
+        let footer = FooterForTable()
+        footer.label.text = String(firstLetters[section].uppercased())
+        
+        return footer
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard !firstLetters.isEmpty else {return 0}
@@ -154,10 +173,11 @@ extension MyFriendViewController: UITableViewDataSource{
         
         let key = firstLetters[indexPath.section]
         let friendsForKey = friendsDict[key]
-        let friend = friendsForKey?[indexPath.row]
+        guard let friend = friendsForKey?[indexPath.row] else { return cell }
         
-        cell.avatarImageView.image = UIImage(named: friend?.avatar ?? "logo")
-        cell.nameLabel.text = friend?.name
+        cell.nameLabel.text = friend.firstName + " " + friend.lastName
+        cell.avatarImageView.image = imageService?.photo(atIndexpath: indexPath, byUrl: friend.avatarURL)
+        
         return cell
     }
 }

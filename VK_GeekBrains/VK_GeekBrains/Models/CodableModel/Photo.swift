@@ -9,9 +9,9 @@
 import Foundation
 
 struct Photo: Codable {
-    let id: Int
-    let ownerID: Int
-    let sizes: [Size]
+    let id: Int?
+    let ownerID: Int?
+    let sizes: [Size]?
     enum CodingKeys: String, CodingKey {
         case id, ownerID = "owner_id", sizes
     }
@@ -19,5 +19,6 @@ struct Photo: Codable {
 
 struct Size: Codable {
     let type: String?
-    let src: String?
+    let url: String?
 }
+

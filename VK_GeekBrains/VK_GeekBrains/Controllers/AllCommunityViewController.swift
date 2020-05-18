@@ -14,11 +14,11 @@ class AllCommunityViewController: UIViewController {
     
     var searchController: UISearchController!
     
-    var communites = Groups().list
-    var filtredCommunites = [Group]()
-    var shouldShowSearchResults = false
+    let networkService = NetworkingService()
+    var isSearching = false
     
-    
+    var communites = [Community]()
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchController()
@@ -27,30 +27,34 @@ class AllCommunityViewController: UIViewController {
 }
 extension AllCommunityViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text
         
-        if let text = searchText?.lowercased(){
-            guard !text.isEmpty else {
-               return filtredCommunites = communites
-            }
-            filtredCommunites = communites.filter({ (community) -> Bool in
-                community.name.lowercased().contains(text)
-            })
-        } else {
-            filtredCommunites = communites
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
+            self.communites.removeAll()
+            self.tableView.reloadData()
+            return
         }
-        tableView.reloadData()
-        
+         
+        if !isSearching {
+            isSearching.toggle()
+            networkService.getSearchCommunity(text: searchText, onComplete: { [weak self] (communites) in
+                self?.communites = communites
+                self?.tableView.reloadData()
+                self?.isSearching.toggle()
+            }) { (error) in
+                self.isSearching.toggle()
+                print(error)
+            }
+        }
     }
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = true
-        tableView.reloadData()
-    }
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        shouldShowSearchResults = false
-        tableView.reloadData()
-    }
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        shouldShowSearchResults = true
+//        tableView.reloadData()
+//    }
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        shouldShowSearchResults = false
+//        tableView.reloadData()
+//    }
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -68,22 +72,16 @@ extension AllCommunityViewController: UITableViewDelegate{
 }
 extension AllCommunityViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if shouldShowSearchResults {
-            return filtredCommunites.count
-        } else {
-            return communites.count
-        }
+        return communites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "allCommunityCell", for: indexPath) as! AllCommunityTableViewCell
-        if shouldShowSearchResults {
-            cell.imageCommunityView.image = UIImage(named: filtredCommunites[indexPath.row].avatar)
-            cell.nameCommunityLabel.text = filtredCommunites[indexPath.row].name
-        }else {
-            cell.imageCommunityView.image = UIImage(named: communites[indexPath.row].avatar)
-            cell.nameCommunityLabel.text = communites[indexPath.row].name
-        }
+        
+        let community = communites[indexPath.row]
+        
+        cell.nameCommunityLabel.text = community.name
+        community.getAvatarImage(for: &cell.imageCommunityView)
         return cell
     }
 }

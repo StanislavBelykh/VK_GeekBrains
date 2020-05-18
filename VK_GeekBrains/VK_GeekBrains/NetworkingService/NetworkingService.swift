@@ -70,7 +70,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(photos)
+            DispatchQueue.main.async {
+                onComplete(photos)
+            }
         }
         task.resume()
         
@@ -100,7 +102,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(news)
+            DispatchQueue.main.async {
+                onComplete(news)
+            }
         }
         task.resume()
         
@@ -130,11 +134,13 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(communities)
+            DispatchQueue.main.async {
+                onComplete(communities)
+            }
         }
         task.resume()
     }
-    func getSearchCommunity(text: String, onComplete: @escaping ([Community]) -> Void, onError: @escaping (Error) -> Void) {
+    func getSearchCommunity(text: String?, onComplete: @escaping ([Community]) -> Void, onError: @escaping (Error) -> Void) {
         urlConstructor.path = "/method/groups.search"
         
         urlConstructor.queryItems = [
@@ -156,7 +162,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(communities)
+            DispatchQueue.main.async {
+                onComplete(communities)
+            }
         }
         task.resume()
     }
@@ -186,7 +194,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(friends)
+            DispatchQueue.main.async {
+                onComplete(friends)
+            }
         }
         task.resume()
         
@@ -215,7 +225,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(friends)
+            DispatchQueue.main.async {
+                onComplete(friends)
+            }
         }
         task.resume()
         
@@ -248,7 +260,9 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            onComplete(files)
+            DispatchQueue.main.async {
+                onComplete(files)
+            }
         }
         task.resume()
     }
@@ -293,7 +307,9 @@ class NetworkingService {
             }
             
             if response != nil {
-                onComplete()
+                DispatchQueue.main.async {
+                    onComplete()
+                }
             }
         }
         task.resume()

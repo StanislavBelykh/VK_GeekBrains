@@ -12,23 +12,32 @@ class MyCommunityViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var myCommunites = [Group]()
+    let networkService = NetworkingService()
+    var myCommunites = [Community]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        networkService.getCommunity(onComplete: { [weak self] (communites) in
+            self?.myCommunites = communites
+            self?.tableView.reloadData()
+        }) { (error) in
+            print(error)
+        }
     }
     
     @IBAction func addCommunity(segue: UIStoryboardSegue){
         if segue.identifier == "addCommunitySegue" {
             let allCommunityController = segue.source as! AllCommunityViewController
-            
-            if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
-                let community = allCommunityController.communites[indexPath.row]
-                if !myCommunites.contains(community){
-                    myCommunites.append(community)
-                    tableView.reloadData()
-                }
-            }
+            self.navigationController?.pushViewController(allCommunityController, animated: true)
+
+//            if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
+//                let community = allCommunityController.communites[indexPath.row]
+//                if !myCommunites.contains(community){
+//                    myCommunites.append(community)
+//                    tableView.reloadData()
+//                }
+//            }
         }
     }
 }
@@ -59,8 +68,10 @@ extension MyCommunityViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCommunityCell", for: indexPath) as! MyCommunityTableViewCell
-        cell.imageCommunityView.image = UIImage(named: myCommunites[indexPath.row].avatar)
-        cell.nameCommunitylabel.text = myCommunites[indexPath.row].name
+        let community = myCommunites[indexPath.row]
+        cell.nameCommunitylabel.text = community.name
+        community.getAvatarImage(for: &cell.imageCommunityView)
+        
         return cell
     }
 }

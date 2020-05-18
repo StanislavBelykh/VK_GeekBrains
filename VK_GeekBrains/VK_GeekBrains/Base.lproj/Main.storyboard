@@ -126,7 +126,7 @@
             </objects>
             <point key="canvasLocation" x="240.57971014492756" y="28.794642857142854"/>
         </scene>
-        <!--Сообщества-->
+        <!--Мои сообщества-->
         <scene sceneID="zIi-E6-xYo">
             <objects>
                 <viewController id="X3Q-N0-I8c" customClass="MyCommunityViewController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
@@ -197,7 +197,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XHU-ch-ofv"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Сообщества" id="11n-u4-14U">
+                    <navigationItem key="navigationItem" title="Мои сообщества" id="11n-u4-14U">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z1C-Ri-nqZ">
                             <connections>
                                 <segue destination="xhI-1E-Mhh" kind="show" id="aSc-B1-O2i"/>

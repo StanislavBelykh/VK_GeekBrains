@@ -10,7 +10,8 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
-    let news = NewsFabric().list
+    
+    let networkService = NetworkingService()
     
     override func loadView() {
         super.loadView()
@@ -20,9 +21,15 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        networkService.getNews(onComplete: { (news) in
+            self.view().newsTableView.news = news
+            self.view().newsTableView.reloadData()
+        }) { (error) in
+            print(error)
+        }
         title = "Новости"
-        view().newsTableView.news = news
+        
 
     }
     

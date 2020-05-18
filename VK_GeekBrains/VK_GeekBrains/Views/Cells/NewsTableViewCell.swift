@@ -138,7 +138,7 @@ class NewsTableViewCell: UITableViewCell {
 
 class  PhotoView: UIView {
     
-    var photos = [String]()
+    var photos: [UIImage?]?
     
     let imageView = UIImageView()
     let collageView1 = UIImageView()
@@ -152,7 +152,13 @@ class  PhotoView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        self.setImages()
+    }
+    
+    func setImages(){
+        guard let photos = photos, !photos.isEmpty else {
+            return
+        }
         if photos.count > 3 {
             addSubview(collageView1)
             addSubview(collageView2)
@@ -163,10 +169,10 @@ class  PhotoView: UIView {
             collageView3.translatesAutoresizingMaskIntoConstraints = false
             collageView4.translatesAutoresizingMaskIntoConstraints = false
             
-            collageView1.image = UIImage(named: photos[0])
-            collageView2.image = UIImage(named: photos[1])
-            collageView3.image = UIImage(named: photos[2])
-            collageView4.image = UIImage(named: photos[3])
+            collageView1.image = photos[0]
+            collageView2.image = photos[1]
+            collageView3.image = photos[2]
+            collageView4.image = photos[3]
             
             collageView1.topAnchor.constraint(equalTo: topAnchor).isActive = true
             collageView1.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -192,7 +198,7 @@ class  PhotoView: UIView {
             addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
             
-            imageView.image = UIImage(named: photos[0])
+            imageView.image = photos[0]
             
             imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
