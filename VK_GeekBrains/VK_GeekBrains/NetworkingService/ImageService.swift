@@ -9,7 +9,7 @@
 import UIKit
 
 class ImageService {
-
+    
     private let cacheLifeTime: TimeInterval = 30 * 24 * 60 * 60
     private static let pathName: String = {
         
@@ -34,9 +34,9 @@ class ImageService {
     }
     
     private func saveImageToCache(url: String, image: UIImage) {
-           guard let fileName = getFilePath(url: url),
-           let data = image.pngData() else { return }
-           FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
+        guard let fileName = getFilePath(url: url),
+            let data = image.pngData() else { return }
+        FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
     }
     
     private func getImageFromCache(url: String) -> UIImage? {
@@ -51,7 +51,7 @@ class ImageService {
         guard
             lifeTime <= cacheLifeTime,
             let image = UIImage(contentsOfFile: fileName) else { return nil }
-
+        
         DispatchQueue.main.async {
             self.images[url] = image
         }
@@ -61,22 +61,22 @@ class ImageService {
     private var images = [String: UIImage]()
     
     private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
- 
-            guard let urlRequest = URL(string: url) else { return }
-            let request = URLRequest(url: urlRequest)
-            URLSession.shared.dataTask(with: request) { (data, response, _ ) in
-                guard
+        
+        guard let urlRequest = URL(string: url) else { return }
+        let request = URLRequest(url: urlRequest)
+        URLSession.shared.dataTask(with: request) { (data, response, _ ) in
+            guard
                 let data = data,
                 let image = UIImage(data: data) else { return }
-                DispatchQueue.main.async {
-                    self.images[url] = image
-                }
-                self.saveImageToCache(url: url, image: image)
-                DispatchQueue.main.async {
-                    self.container.reloadRow(atIndexpath: indexPath)
-                }
-                
-            }.resume()
+            DispatchQueue.main.async {
+                self.images[url] = image
+            }
+            self.saveImageToCache(url: url, image: image)
+            DispatchQueue.main.async {
+                self.container.reloadRow(atIndexpath: indexPath)
+            }
+            
+        }.resume()
         
     }
     

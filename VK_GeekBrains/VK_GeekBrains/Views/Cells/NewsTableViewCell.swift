@@ -53,7 +53,7 @@ class NewsTableViewCell: UITableViewCell {
         return repostButton
     }()
     
-    let photoView = PhotoView()
+    var photoView = PhotoView()
     let likeControl = LikeControl()
     
     

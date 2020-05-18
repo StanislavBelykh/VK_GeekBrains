@@ -30,6 +30,7 @@ class NewsView: UIView {
     func setNews(news: [NewsModel]) {
         self.newsTableView.news = news
     }
+    
 }
 
 class NewsTableView: UITableView {
@@ -56,6 +57,16 @@ class NewsTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func loadImeges(indexPath: IndexPath, urls: [String]) -> [UIImage]?{
+        var images = [UIImage]()
+        for url in urls {
+            if let image = self.imageServise?.photo(atIndexpath: indexPath, byUrl: url) {
+                images.append(image)
+            }
+        }
+        return images
+    }
+    
 }
 
 extension NewsTableView: UITableViewDelegate {
@@ -71,21 +82,15 @@ extension NewsTableView: UITableViewDataSource {
         let cell = dequeueReusableCell(withIdentifier: NewsTableViewCell.reusedID, for: indexPath) as! NewsTableViewCell
 
         let post = news[indexPath.row]
-        //let photosURL = post.attachments.compactMap({ $0.photo?.sizes?.last?.url })
-        
 
-//        cell.avatarView.image = UIImage(named: post.avatar)
-//        cell.labelCreator.text = post.creator
         cell.dateLabel.text = post.getStringDate()
         cell.titleLabel.text = post.text
-        var photos = [UIImage?]()
+        cell.likeControl.setLike(count: post.likes.count)
         
         guard let photosURL = post.photosURL else {return cell}
-        for photoURL in photosURL {
-            photos.append(imageServise?.photo(atIndexpath: indexPath, byUrl: photoURL))
-        }
-        cell.photoView.photos = photos
-//        cell.likeControl.setLike(count: post.likeCount)
+        
+        cell.photoView.photos = self.loadImeges(indexPath: indexPath, urls: photosURL)
+        
 
         return cell
     }

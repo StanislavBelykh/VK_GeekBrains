@@ -146,7 +146,7 @@
 			children = (
 				852787892431FBEE00078C48 /* AppDelegate.swift */,
 				8527878B2431FBEE00078C48 /* SceneDelegate.swift */,
-				85228BA12471AFEE001425DC /* DateFormatter.swift */,
+				85A6F1DA2472D02800BAAECF /* Helpers */,
 				8572B7F2246ED95C00D04333 /* Extensions */,
 				85E29256246722A900181E70 /* NetworkingService */,
 				85344CEE2433504E0048AB5D /* Views */,
@@ -250,6 +250,14 @@
 				859147A8244F8AF800881878 /* CustomNavigationController.swift */,
 			);
 			path = "Navigation controllers";
+			sourceTree = "<group>";
+		};
+		85A6F1DA2472D02800BAAECF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				85228BA12471AFEE001425DC /* DateFormatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		85B4B202246C402900348238 /* CodableModel */ = {

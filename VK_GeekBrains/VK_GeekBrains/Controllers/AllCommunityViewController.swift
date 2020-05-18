@@ -14,6 +14,7 @@ class AllCommunityViewController: UIViewController {
     
     var searchController: UISearchController!
     
+    var imageService: ImageService?
     let networkService = NetworkingService()
     var isSearching = false
     
@@ -21,6 +22,7 @@ class AllCommunityViewController: UIViewController {
       
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageService = ImageService(container: tableView)
         configureSearchController()
     }
     
@@ -47,14 +49,6 @@ extension AllCommunityViewController: UISearchResultsUpdating, UISearchBarDelega
         }
     }
     
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        shouldShowSearchResults = true
-//        tableView.reloadData()
-//    }
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        shouldShowSearchResults = false
-//        tableView.reloadData()
-//    }
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -81,7 +75,8 @@ extension AllCommunityViewController: UITableViewDataSource{
         let community = communites[indexPath.row]
         
         cell.nameCommunityLabel.text = community.name
-        community.getAvatarImage(for: &cell.imageCommunityView)
+        cell.imageCommunityView.image = imageService?.photo(atIndexpath: indexPath, byUrl: community.avatarURL)
+  
         return cell
     }
 }
