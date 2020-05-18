@@ -29,7 +29,6 @@ class MyCommunityViewController: UIViewController {
     @IBAction func addCommunity(segue: UIStoryboardSegue){
         if segue.identifier == "addCommunitySegue" {
             let allCommunityController = segue.source as! AllCommunityViewController
-            self.navigationController?.pushViewController(allCommunityController, animated: true)
             if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
                 let community = allCommunityController.communites[indexPath.row]
                 networkService.joinCommunity(id: community.id, onComplete: { (value) in
