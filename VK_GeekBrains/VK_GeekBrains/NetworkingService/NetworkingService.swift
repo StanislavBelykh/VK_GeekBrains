@@ -170,7 +170,7 @@ class NetworkingService {
     }
     
     func joinCommunity(id: Int, onComplete: @escaping (Int) -> Void, onError: @escaping (Error) -> Void) {
-        urlConstructor.path = "/method/groups.search"
+        urlConstructor.path = "/method/groups.join"
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "group_id", value: String(id)),
@@ -187,12 +187,12 @@ class NetworkingService {
                 onError(ServerError.noDataProvided)
                 return
             }
-            guard let response = try? JSONDecoder().decode(ResponseJoin.self, from: data).response else {
+            guard let response = try? JSONDecoder().decode(ResponseJoin.self, from: data) else {
                 onError(ServerError.failedToDecode)
                 return
             }
             DispatchQueue.main.async {
-                onComplete(response)
+                onComplete(response.response)
             }
         }
         task.resume()
