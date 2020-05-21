@@ -479,6 +479,7 @@
                         <segue destination="agU-u6-EnR" kind="relationship" relationship="viewControllers" id="N2r-g0-YBW"/>
                         <segue destination="xLX-ao-KzQ" kind="relationship" relationship="viewControllers" id="YiT-eK-Fen"/>
                         <segue destination="qLA-Mo-XJ0" kind="relationship" relationship="viewControllers" id="jau-lo-Uxd"/>
+                        <segue destination="3Lb-e6-7Rb" kind="relationship" relationship="viewControllers" id="3HK-Fl-gYI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hgw-dc-gIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -543,6 +544,22 @@
             </objects>
             <point key="canvasLocation" x="2151" y="1173"/>
         </scene>
+        <!--File View Controller-->
+        <scene sceneID="Y3M-Pf-bNx">
+            <objects>
+                <viewController id="iKz-5a-z1W" customClass="FileViewController" customModule="VK_GeekBrains" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="C70-m8-A4A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qmd-0y-NYx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cHj-gA-Dwc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ewd-p5-7Tq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3060.8695652173915" y="1863.6160714285713"/>
+        </scene>
         <!--Loading View Controller-->
         <scene sceneID="hbE-ad-spf">
             <objects>
@@ -598,8 +615,29 @@
             </objects>
             <point key="canvasLocation" x="-530" y="29"/>
         </scene>
+        <!--Файлы-->
+        <scene sceneID="Tmi-v3-3bL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Lb-e6-7Rb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Файлы" image="folder" catalog="system" selectedImage="folder.fill" id="9CL-uN-BfZ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Njv-J7-v4M">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iKz-5a-z1W" kind="relationship" relationship="rootViewController" id="Ue3-5F-Khg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hki-R0-MXU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2150.7246376811595" y="1863.6160714285713"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

@@ -88,5 +88,7 @@ extension TypeFile {
 }
 
 enum StateFile {
-    case inCloud, loading, loaded
+    case inCloud
+    case loading
+    case loaded
 }

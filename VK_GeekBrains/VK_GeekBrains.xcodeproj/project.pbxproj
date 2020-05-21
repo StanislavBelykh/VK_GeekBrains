@@ -31,6 +31,12 @@
 		8572B7EB246D356B00D04333 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572B7EA246D356B00D04333 /* NewsModel.swift */; };
 		8572B7ED246D3B4D00D04333 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572B7EC246D3B4D00D04333 /* Photo.swift */; };
 		8572B7F1246EC07600D04333 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572B7F0246EC07600D04333 /* UIImageView.swift */; };
+		857A08672476D6D70069D27B /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A08662476D6D70069D27B /* UIAlertController.swift */; };
+		857A08692476D6FF0069D27B /* SortManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A08682476D6FF0069D27B /* SortManager.swift */; };
+		857A086B2476D78D0069D27B /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A086A2476D78D0069D27B /* FileViewController.swift */; };
+		857A086D2476D8130069D27B /* FileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A086C2476D8130069D27B /* FileTableView.swift */; };
+		857A086F2476D88A0069D27B /* FileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A086E2476D88A0069D27B /* FileTableViewCell.swift */; };
+		857A08712476D9260069D27B /* FileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857A08702476D9260069D27B /* FileTableHeaderView.swift */; };
 		858088852440BF6D00D9CE05 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858088842440BF6D00D9CE05 /* NewsView.swift */; };
 		858088872440C00C00D9CE05 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858088862440C00C00D9CE05 /* News.swift */; };
 		858088892440C70100D9CE05 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858088882440C70100D9CE05 /* NewsTableViewCell.swift */; };
@@ -89,6 +95,12 @@
 		8572B7EA246D356B00D04333 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		8572B7EC246D3B4D00D04333 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		8572B7F0246EC07600D04333 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		857A08662476D6D70069D27B /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		857A08682476D6FF0069D27B /* SortManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortManager.swift; sourceTree = "<group>"; };
+		857A086A2476D78D0069D27B /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		857A086C2476D8130069D27B /* FileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTableView.swift; sourceTree = "<group>"; };
+		857A086E2476D88A0069D27B /* FileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTableViewCell.swift; sourceTree = "<group>"; };
+		857A08702476D9260069D27B /* FileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTableHeaderView.swift; sourceTree = "<group>"; };
 		858088842440BF6D00D9CE05 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		858088862440C00C00D9CE05 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		858088882440C70100D9CE05 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +200,7 @@
 				852787A5243234BA00078C48 /* AllCommunityViewController.swift */,
 				8580888A2440FBAD00D9CE05 /* NewsViewController.swift */,
 				85B0BBC72437564A00B3953B /* SettingsViewController.swift */,
+				857A086A2476D78D0069D27B /* FileViewController.swift */,
 				859147AA244F8B0500881878 /* Navigation controllers */,
 				859147A7244F89A700881878 /* Interaction controllers */,
 				859147A4244F890600881878 /* Animation controllers */,
@@ -205,6 +218,7 @@
 				85B0BBC52437375500B3953B /* ShadowView.swift */,
 				85C7CCE1243E132C0012557F /* FooterForTable.swift */,
 				85A380492447699D002649EE /* LoadingDotView.swift */,
+				857A08722476D9570069D27B /* Files */,
 				85C7CCE0243E12FA0012557F /* Controls */,
 			);
 			path = Views;
@@ -218,6 +232,7 @@
 				85344CF2243351740048AB5D /* MyCommunityTableViewCell.swift */,
 				85446991243354DC0070033A /* AllCommunityTableViewCell.swift */,
 				85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */,
+				857A086E2476D88A0069D27B /* FileTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -238,8 +253,18 @@
 			isa = PBXGroup;
 			children = (
 				8572B7F0246EC07600D04333 /* UIImageView.swift */,
+				857A08662476D6D70069D27B /* UIAlertController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		857A08722476D9570069D27B /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				857A086C2476D8130069D27B /* FileTableView.swift */,
+				857A08702476D9260069D27B /* FileTableHeaderView.swift */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 		859147A4244F890600881878 /* Animation controllers */ = {
@@ -271,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				85228BA12471AFEE001425DC /* DateFormatter.swift */,
+				857A08682476D6FF0069D27B /* SortManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -446,12 +472,16 @@
 				85695AD324332B350037DCA2 /* Users.swift in Sources */,
 				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,
 				8572B7EB246D356B00D04333 /* NewsModel.swift in Sources */,
+				857A086D2476D8130069D27B /* FileTableView.swift in Sources */,
+				857A086F2476D88A0069D27B /* FileTableViewCell.swift in Sources */,
 				85446992243354DC0070033A /* AllCommunityTableViewCell.swift in Sources */,
 				8527879E243207CE00078C48 /* LoginViewController.swift in Sources */,
 				852787A6243234BA00078C48 /* AllCommunityViewController.swift in Sources */,
 				852787A22432347A00078C48 /* PhotoToFriendViewController.swift in Sources */,
 				85344CF3243351740048AB5D /* MyCommunityTableViewCell.swift in Sources */,
+				857A08692476D6FF0069D27B /* SortManager.swift in Sources */,
 				85B4B1FF246C3FE000348238 /* ServerError.swift in Sources */,
+				857A08712476D9260069D27B /* FileTableHeaderView.swift in Sources */,
 				8527878A2431FBEE00078C48 /* AppDelegate.swift in Sources */,
 				85B4B1FD246C3F7500348238 /* FileModel.swift in Sources */,
 				859147A6244F895100881878 /* InteractionManager.swift in Sources */,
@@ -462,12 +492,14 @@
 				85C7CCE2243E132C0012557F /* FooterForTable.swift in Sources */,
 				8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */,
 				85B4B20C246C8D1F00348238 /* Friend.swift in Sources */,
+				857A08672476D6D70069D27B /* UIAlertController.swift in Sources */,
 				85B0BBC82437564A00B3953B /* SettingsViewController.swift in Sources */,
 				856264C0243A5EEF00D10B56 /* LettersControl.swift in Sources */,
 				85228BA22471AFEE001425DC /* DateFormatter.swift in Sources */,
 				8558933A2437743900B9C310 /* SettingsSinglton.swift in Sources */,
 				858088872440C00C00D9CE05 /* News.swift in Sources */,
 				8580888B2440FBAD00D9CE05 /* NewsViewController.swift in Sources */,
+				857A086B2476D78D0069D27B /* FileViewController.swift in Sources */,
 				85B0BBC62437375500B3953B /* ShadowView.swift in Sources */,
 				85B4B20A246C682B00348238 /* Response.swift in Sources */,
 				85A6F1D92472848D00BAAECF /* ImageService.swift in Sources */,
