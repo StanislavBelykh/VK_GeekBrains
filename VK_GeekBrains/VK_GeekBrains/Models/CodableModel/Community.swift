@@ -14,6 +14,8 @@ class Community: Codable {
     @objc dynamic var avatarURL: String = ""
     
     enum CodingKeys: String, CodingKey {
-        case id, name, avatarURL = "photo_50"
+        case id
+        case name
+        case avatarURL = "photo_50"
     }
 }

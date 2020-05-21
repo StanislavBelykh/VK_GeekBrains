@@ -21,7 +21,14 @@ class FileModel: Codable {
     var state: StateFile?
 
     enum CodingKeys: String, CodingKey {
-        case date, ext, id, ownerID = "owner_id", size, title, type, url
+        case date
+        case ext
+        case id
+        case ownerID = "owner_id"
+        case size
+        case title
+        case type
+        case url
     }
 }
 // MARK: - TypeFile

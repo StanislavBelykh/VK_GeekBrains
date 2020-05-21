@@ -17,7 +17,10 @@ class Friend: Codable {
     
     
     enum CodingKeys: String, CodingKey {
-        case id, firstName = "first_name", lastName = "last_name", avatarURL = "photo_100"
+        case id
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case avatarURL = "photo_100"
     }
     
 }

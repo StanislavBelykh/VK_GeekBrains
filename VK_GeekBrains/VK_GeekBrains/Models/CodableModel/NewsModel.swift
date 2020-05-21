@@ -57,7 +57,11 @@ class NewsModel: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case postID = "post_id", text, date, likes, attachments
+        case postID = "post_id"
+        case text
+        case date
+        case likes
+        case attachments
     }
     
     func getStringDate() -> String {
