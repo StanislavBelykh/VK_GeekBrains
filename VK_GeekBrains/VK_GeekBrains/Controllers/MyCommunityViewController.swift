@@ -13,11 +13,13 @@ class MyCommunityViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let networkService = NetworkingService()
+    var imageService: ImageService?
     var myCommunites = [Community]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        imageService = ImageService(container: tableView)
         networkService.getCommunity(onComplete: { [weak self] (communites) in
             self?.myCommunites = communites
             self?.tableView.reloadData()
@@ -74,7 +76,7 @@ extension MyCommunityViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCommunityCell", for: indexPath) as! MyCommunityTableViewCell
         let community = myCommunites[indexPath.row]
         cell.nameCommunitylabel.text = community.name
-        community.getAvatarImage(for: &cell.imageCommunityView)
+        cell.imageCommunityView.image = imageService?.photo(atIndexpath: indexPath, byUrl: community.avatarURL)
         
         return cell
     }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,9 +57,12 @@
 		85E292532467212800181E70 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E292522467212800181E70 /* Session.swift */; };
 		85E31694244999C400B8DD10 /* PresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E31693244999C400B8DD10 /* PresenterViewController.swift */; };
 		85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */; };
+		AE95D83971FE0D7CF8B04577 /* Pods_VK_GeekBrains.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6710DD216FCF9D3F621CCE9 /* Pods_VK_GeekBrains.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32FD3DD8A35063C5906753F2 /* Pods-VK_GeekBrains.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_GeekBrains.release.xcconfig"; path = "Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains.release.xcconfig"; sourceTree = "<group>"; };
+		6E3CCBA021C2C399BC7937CA /* Pods-VK_GeekBrains.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_GeekBrains.debug.xcconfig"; path = "Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains.debug.xcconfig"; sourceTree = "<group>"; };
 		85228BA12471AFEE001425DC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		852787862431FBEE00078C48 /* VK_GeekBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_GeekBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852787892431FBEE00078C48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		85E292522467212800181E70 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		85E31693244999C400B8DD10 /* PresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterViewController.swift; sourceTree = "<group>"; };
 		85ED3C9D243337E500415763 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		D6710DD216FCF9D3F621CCE9 /* Pods_VK_GeekBrains.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_GeekBrains.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,17 +123,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE95D83971FE0D7CF8B04577 /* Pods_VK_GeekBrains.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AB49BD09F7552DC63023939 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D6710DD216FCF9D3F621CCE9 /* Pods_VK_GeekBrains.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8527877D2431FBEE00078C48 = {
 			isa = PBXGroup;
 			children = (
 				852787882431FBEE00078C48 /* VK_GeekBrains */,
 				852787872431FBEE00078C48 /* Products */,
+				C884B4D3A13B482C9F3B226A /* Pods */,
+				5AB49BD09F7552DC63023939 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,8 +281,8 @@
 				85B4B209246C682B00348238 /* Response.swift */,
 				8572B7EC246D3B4D00D04333 /* Photo.swift */,
 				85B4B20B246C8D1F00348238 /* Friend.swift */,
-				8572B7EA246D356B00D04333 /* NewsModel.swift */,
 				85B4B20D246C8E0000348238 /* Community.swift */,
+				8572B7EA246D356B00D04333 /* NewsModel.swift */,
 				85B4B1FC246C3F7500348238 /* FileModel.swift */,
 			);
 			path = CodableModel;
@@ -289,10 +304,19 @@
 				85E292522467212800181E70 /* Session.swift */,
 				85B4B1FA246C3EF800348238 /* NetworkingService.swift */,
 				85B4B203246C435900348238 /* NetworkConstants.swift */,
-				85B4B1FE246C3FE000348238 /* ServerError.swift */,
 				85A6F1D82472848D00BAAECF /* ImageService.swift */,
+				85B4B1FE246C3FE000348238 /* ServerError.swift */,
 			);
 			path = NetworkingService;
+			sourceTree = "<group>";
+		};
+		C884B4D3A13B482C9F3B226A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E3CCBA021C2C399BC7937CA /* Pods-VK_GeekBrains.debug.xcconfig */,
+				32FD3DD8A35063C5906753F2 /* Pods-VK_GeekBrains.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,9 +326,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8527879A2431FBF200078C48 /* Build configuration list for PBXNativeTarget "VK_GeekBrains" */;
 			buildPhases = (
+				444C3BCA230F59B64F660B08 /* [CP] Check Pods Manifest.lock */,
 				852787822431FBEE00078C48 /* Sources */,
 				852787832431FBEE00078C48 /* Frameworks */,
 				852787842431FBEE00078C48 /* Resources */,
+				A73CF5EB206C80849F4DA2EA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +386,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		444C3BCA230F59B64F660B08 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VK_GeekBrains-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A73CF5EB206C80849F4DA2EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		852787822431FBEE00078C48 /* Sources */ = {
@@ -554,6 +622,7 @@
 		};
 		8527879B2431FBF200078C48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E3CCBA021C2C399BC7937CA /* Pods-VK_GeekBrains.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -572,6 +641,7 @@
 		};
 		8527879C2431FBF200078C48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32FD3DD8A35063C5906753F2 /* Pods-VK_GeekBrains.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

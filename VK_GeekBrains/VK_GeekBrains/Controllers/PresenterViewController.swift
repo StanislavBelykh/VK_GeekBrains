@@ -86,9 +86,9 @@ class PresenterViewController: UIViewController {
             rightImageView.widthAnchor.constraint(equalTo: middleImageView.widthAnchor),
         ])
         
-        leftImageView.loadImage(by: (photos[indexPhotoLeft].sizes?.last!.url!)!)
-        middleImageView.loadImage(by: (photos[indexPhotoMid].sizes?.last!.url!)!)
-        rightImageView.loadImage(by: (photos[indexPhotoRight].sizes?.last!.url!)!)
+        leftImageView.loadImage(by: (photos[indexPhotoLeft].sizes.last!.url))
+        middleImageView.loadImage(by: (photos[indexPhotoMid].sizes.last!.url))
+        rightImageView.loadImage(by: (photos[indexPhotoRight].sizes.last!.url))
         
         middleImageView.layer.cornerRadius = 8
         rightImageView.layer.cornerRadius = 8

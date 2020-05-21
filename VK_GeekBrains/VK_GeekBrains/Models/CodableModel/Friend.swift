@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct Friend: Codable {
-    let id: Int
-    let firstName: String
-    let lastName: String
-    let avatarURL: String
+class Friend: Codable {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var lastName: String = ""
+    @objc dynamic var avatarURL: String = ""
     
     
     enum CodingKeys: String, CodingKey {

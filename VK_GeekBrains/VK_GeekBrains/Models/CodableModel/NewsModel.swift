@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct NewsModel: Codable {
+class NewsModel: Codable {
     let postID: Int
     let text: String
     let date: Double
@@ -68,7 +68,23 @@ struct NewsModel: Codable {
 
 struct Attachment: Codable {
     let type: String?
-    let photo: Photo?
+    let photo: PhotoNews?
+}
+
+class PhotoNews: Codable {
+    let id: Int?
+    let ownerID: Int?
+    let sizes: [SizeNews]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case ownerID = "owner_id"
+        case sizes
+    }
+}
+class SizeNews: Codable {
+    let type: String?
+    let url: String?
 }
 
 struct LikeModel: Codable {

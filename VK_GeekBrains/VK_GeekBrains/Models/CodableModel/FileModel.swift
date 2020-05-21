@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FileModel: Codable {
+class FileModel: Codable {
     let date: Double
     let ext: String
     let id: Int
