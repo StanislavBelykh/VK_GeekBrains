@@ -11,7 +11,7 @@ import UIKit
 class MyFriendViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    private var lettersControl = LettersControl()
+    private var lettersControl: LettersControl?
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else {
@@ -21,6 +21,7 @@ class MyFriendViewController: UIViewController {
     }
     var imageService: ImageService?
     let networkService = NetworkingService()
+    let realmManager = RealmManager()
     
     var data = [Friend]()
     var friends = [Friend]()
@@ -34,16 +35,15 @@ class MyFriendViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        networkService.getFriends(onComplete: { [weak self] (friends) in
-            let tmpFriends = friends.filter{ !$0.lastName.isEmpty }
-            self?.data = tmpFriends
-            self?.friendsDict = self?.getSortedUsers(searchText: nil, list: tmpFriends) ?? [Character : [Friend]]()
-            self?.tableView.reloadData()
-            self?.setLettersControl()
-        }) { (error) in
-            print(error)
-        }
+
+        setFriends()
+        realmManager.updateFriends()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.setFriends),
+            name: RealmNotification.friendsUpdate.name(),
+            object: nil)
+
         imageService = ImageService(container: tableView)
         setSearchController()
     }
@@ -63,6 +63,15 @@ class MyFriendViewController: UIViewController {
                 controller.title = user.firstName + " " + user.lastName
             }
         }
+    }
+    @objc private func setFriends(){
+        let friendsRealm = realmManager.friends
+        guard let friends = friendsRealm else { return }
+        let tmpFriends = friends.filter{ !$0.lastName.isEmpty }
+        self.data = tmpFriends
+        self.friendsDict = self.getSortedUsers(searchText: nil, list: tmpFriends)
+        self.tableView.reloadData()
+        self.setLettersControl()
     }
     private func getSortedUsers(searchText: String? , list: [Friend]) -> [Character:[Friend]]{
         var tempUsers: [Friend]
@@ -86,10 +95,12 @@ class MyFriendViewController: UIViewController {
     }
     
     private func setLettersControl(){
-        
-        
+        lettersControl = LettersControl()
+        guard let lettersControl = lettersControl else {
+            return
+        }
         view.addSubview(lettersControl)
-        
+       
         lettersControl.translatesAutoresizingMaskIntoConstraints = false
         lettersControl.arrChar = friendsDict.keys.sorted()
         lettersControl.backgroundColor = .clear
@@ -105,6 +116,9 @@ class MyFriendViewController: UIViewController {
     }
     
     @objc func scrollToSelectedLetter(){
+        guard let lettersControl = lettersControl else {
+            return
+        }
         let selectLetter = lettersControl.selectedLetter
         for indexSextion in 0..<firstLetters.count{
             if selectLetter == firstLetters[indexSextion]{
@@ -124,9 +138,9 @@ extension MyFriendViewController: UISearchResultsUpdating{
         friendsDict = self.getSortedUsers(searchText: searchText, list: data)
         
         if searchText == "" {
-            lettersControl.isHidden = false
+            lettersControl?.isHidden = false
         }else{
-            lettersControl.isHidden = true
+            lettersControl?.isHidden = true
         }
         tableView.reloadData()
     }

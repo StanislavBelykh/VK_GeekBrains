@@ -12,8 +12,11 @@ class PhotoToFriendViewController: UIViewController, PhotoToFriendViewController
     
     var galleryCollectionView = GalleryCollectionView()
     var userID: Int?
+    var needUpdate: Bool = true
+    var photos: [Photo]?
     
     let networkService = NetworkingService()
+    let realmManager = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +28,21 @@ class PhotoToFriendViewController: UIViewController, PhotoToFriendViewController
         galleryCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         galleryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        networkService.getPhoto(for: userID, onComplete: { [weak self] (photos) in
-            self?.galleryCollectionView.set(photos: photos)
-            self?.galleryCollectionView.reloadData()
-        }) { (error) in
-            print(error)
-        }
+        self.setPhotos()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(setPhotos),
+                                               name: RealmNotification.photosUpdate.name(),
+                                               object: nil)
     }
-    
+    @objc private func setPhotos(){
+        let photosRealm = realmManager.getPhotos(for: userID, update: needUpdate)
+        needUpdate = false
+        guard let photos = photosRealm else { return }
+        self.galleryCollectionView.photos = photos
+        self.galleryCollectionView.reloadData()
+    }
+
     func showPresenter(photos: [Photo], selectedPhoto: Int){
         let presentVC = PresenterViewController()
         presentVC.photos = photos

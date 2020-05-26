@@ -155,7 +155,6 @@ extension FileViewController: UITableViewDelegate {
         guard self.files[indexPath.row].destinationURL != nil else {
             return
         }
-        //Попробовать через ReloadData
         let quickLookController = QLPreviewController()
         quickLookController.delegate = self
         quickLookController.dataSource = self

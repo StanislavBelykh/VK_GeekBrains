@@ -13,19 +13,32 @@ class MyCommunityViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let networkService = NetworkingService()
+    var realmManager = RealmManager()
     var imageService: ImageService?
+    
     var myCommunites = [Community]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         imageService = ImageService(container: tableView)
-        networkService.getCommunity(onComplete: { [weak self] (communites) in
-            self?.myCommunites = communites
-            self?.tableView.reloadData()
-        }) { (error) in
-            print(error)
-        }
+        
+        setCommunites()
+        realmManager.updateCommunites()
+        NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(self.setCommunites),
+        name: RealmNotification.communitesUpdate.name(),
+        object: nil)
+        
+    }
+    
+    @objc private func setCommunites(){
+        let communitesRealm = realmManager.communites
+        guard let communites = communitesRealm else { return }
+        self.myCommunites = communites
+        self.tableView.reloadData()
     }
     
     @IBAction func addCommunity(segue: UIStoryboardSegue){

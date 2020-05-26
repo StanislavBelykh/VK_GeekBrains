@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Friend: Codable {
+class Friend: Object, Codable {
     @objc dynamic var id: Int = 0
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
@@ -23,4 +23,11 @@ class Friend: Codable {
         case avatarURL = "photo_100"
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["firstName", "lastName"]
+    }
 }

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Community: Codable {
+class Community: Object, Codable {
     @objc dynamic var id: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic var avatarURL: String = ""
@@ -17,5 +18,12 @@ class Community: Codable {
         case id
         case name
         case avatarURL = "photo_50"
+    }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["name"]
     }
 }

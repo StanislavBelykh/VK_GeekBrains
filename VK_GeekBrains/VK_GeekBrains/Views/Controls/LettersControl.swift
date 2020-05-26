@@ -41,6 +41,7 @@ class LettersControl: UIControl {
     }
     
     func setupView(){
+ 
         for letter in arrChar {
             let button = UIButton(type: .system)
             button.backgroundColor = .clear
