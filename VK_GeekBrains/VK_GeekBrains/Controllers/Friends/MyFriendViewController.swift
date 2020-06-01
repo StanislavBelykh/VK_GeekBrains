@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyFriendViewController: UIViewController {
     
@@ -23,8 +24,10 @@ class MyFriendViewController: UIViewController {
     let networkService = NetworkingService()
     let realmManager = RealmManager()
     
+    var token: NotificationToken?
+    
     var data = [Friend]()
-    var friends = [Friend]()
+    var friends: Results<Friend>? //[Friend]()
     var friendsDict = [Character:[Friend]]()
     
     var firstLetters: [Character] {
@@ -36,13 +39,8 @@ class MyFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setFriends()
         realmManager.updateFriends()
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.setFriends),
-            name: RealmNotification.friendsUpdate.name(),
-            object: nil)
+        pairTableAndRealm()
 
         imageService = ImageService(container: tableView)
         setSearchController()
@@ -52,6 +50,21 @@ class MyFriendViewController: UIViewController {
         
     }
     
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+        friends = realm.objects(Friend.self)
+        token = friends?.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial:
+                self?.setFriends()
+            case .update(_, _, _ , _):
+                self?.setFriends()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "FriendsToPhotoSegue" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -64,7 +77,7 @@ class MyFriendViewController: UIViewController {
             }
         }
     }
-    @objc private func setFriends(){
+    private func setFriends(){
         let friendsRealm = realmManager.friends
         guard let friends = friendsRealm else { return }
         let tmpFriends = friends.filter{ !$0.lastName.isEmpty }
