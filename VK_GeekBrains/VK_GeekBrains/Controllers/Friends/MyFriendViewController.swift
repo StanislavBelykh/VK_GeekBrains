@@ -78,11 +78,10 @@ class MyFriendViewController: UIViewController {
         }
     }
     private func setFriends(){
-        let friendsRealm = realmManager.friends
-        guard let friends = friendsRealm else { return }
+        guard let friends = self.friends else { return }
         let tmpFriends = friends.filter{ !$0.lastName.isEmpty }
-        self.data = tmpFriends
-        self.friendsDict = self.getSortedUsers(searchText: nil, list: tmpFriends)
+        self.data = Array(tmpFriends)
+        self.friendsDict = self.getSortedUsers(searchText: nil, list: Array(tmpFriends))
         self.tableView.reloadData()
         self.setLettersControl()
     }

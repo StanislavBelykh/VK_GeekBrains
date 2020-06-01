@@ -11,28 +11,13 @@ import RealmSwift
 
 class RealmManager {
     var networkService: NetworkingService?
-    var friends: [Friend]? {
-        get {
-            do {
-                let realm = try Realm()
-                //print(realm.configuration.fileURL)
-                let friends = realm.objects(Friend.self)
-                return Array(friends)
-            } catch {
-                return nil
-            }
-        }
-        set {
-            NotificationCenter.default.post(name: RealmNotification.friendsUpdate.name(), object: nil)
-        }
-    }
     
     init() {
         networkService = NetworkingService()
     }
     
     func updateFriends(){
-        networkService?.getFriends(onComplete: { [weak self] (friends) in
+        networkService?.getFriends(onComplete: { (friends) in
             do {
                 let realm = try Realm()
                 let oldValues = realm.objects(Friend.self)
@@ -40,7 +25,6 @@ class RealmManager {
                 realm.delete(oldValues)
                 realm.add(friends)
                 try realm.commitWrite()
-                self?.friends = friends
             } catch {
                 print(error)
             }
