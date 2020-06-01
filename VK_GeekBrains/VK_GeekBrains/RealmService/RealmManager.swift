@@ -26,21 +26,6 @@ class RealmManager {
             NotificationCenter.default.post(name: RealmNotification.friendsUpdate.name(), object: nil)
         }
     }
-    var communites: [Community]? {
-        get {
-            do {
-                let realm = try Realm()
-                //print(realm.configuration.fileURL)
-                let communites = realm.objects(Community.self)
-                return Array(communites)
-            } catch {
-                return nil
-            }
-        }
-        set {
-            NotificationCenter.default.post(name: RealmNotification.communitesUpdate.name(), object: nil)
-        }
-    }
     
     init() {
         networkService = NetworkingService()
@@ -64,7 +49,7 @@ class RealmManager {
         })
     }
     func updateCommunites(){
-        networkService?.getCommunity(onComplete: { [weak self] (communites) in
+        networkService?.getCommunity(onComplete: { (communites) in
             do {
                 let realm = try Realm()
                 let oldValues = realm.objects(Community.self)
@@ -72,7 +57,6 @@ class RealmManager {
                 realm.delete(oldValues)
                 realm.add(communites)
                 try realm.commitWrite()
-                self?.communites = communites
             } catch {
                 print(error)
             }
@@ -96,7 +80,7 @@ class RealmManager {
             }
         }, onError: { (error) in
             print(error)
-        })
+            })
     }
     func getPhotos(for userID: Int?, update: Bool) -> [Photo]?{
         if update {
