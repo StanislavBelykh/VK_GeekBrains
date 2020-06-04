@@ -24,6 +24,7 @@
 		85446992243354DC0070033A /* AllCommunityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85446991243354DC0070033A /* AllCommunityTableViewCell.swift */; };
 		85589338243763A100B9C310 /* SettingsPikerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85589337243763A100B9C310 /* SettingsPikerControl.swift */; };
 		8558933A2437743900B9C310 /* SettingsSinglton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855893392437743900B9C310 /* SettingsSinglton.swift */; };
+		855A08A22488FC9C00A37070 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855A08A12488FC9C00A37070 /* FirebaseUser.swift */; };
 		856264BE2438D02D00D10B56 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856264BD2438D02D00D10B56 /* LikeControl.swift */; };
 		856264C0243A5EEF00D10B56 /* LettersControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856264BF243A5EEF00D10B56 /* LettersControl.swift */; };
 		85695AD324332B350037DCA2 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85695AD224332B350037DCA2 /* Users.swift */; };
@@ -46,6 +47,7 @@
 		859147A3244F887100881878 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859147A2244F887100881878 /* PopAnimator.swift */; };
 		859147A6244F895100881878 /* InteractionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859147A5244F895100881878 /* InteractionManager.swift */; };
 		859147A9244F8AF800881878 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859147A8244F8AF800881878 /* CustomNavigationController.swift */; };
+		8596B7F42488F59800ABC010 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8596B7F32488F59800ABC010 /* GoogleService-Info.plist */; };
 		85A38048244712C8002649EE /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A38047244712C8002649EE /* LoadingViewController.swift */; };
 		85A3804A2447699D002649EE /* LoadingDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A380492447699D002649EE /* LoadingDotView.swift */; };
 		85A6F1D92472848D00BAAECF /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A6F1D82472848D00BAAECF /* ImageService.swift */; };
@@ -89,6 +91,7 @@
 		85446991243354DC0070033A /* AllCommunityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCommunityTableViewCell.swift; sourceTree = "<group>"; };
 		85589337243763A100B9C310 /* SettingsPikerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPikerControl.swift; sourceTree = "<group>"; };
 		855893392437743900B9C310 /* SettingsSinglton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSinglton.swift; sourceTree = "<group>"; };
+		855A08A12488FC9C00A37070 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		856264BD2438D02D00D10B56 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		856264BF243A5EEF00D10B56 /* LettersControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersControl.swift; sourceTree = "<group>"; };
 		85695AD224332B350037DCA2 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 		859147A2244F887100881878 /* PopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		859147A5244F895100881878 /* InteractionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionManager.swift; sourceTree = "<group>"; };
 		859147A8244F8AF800881878 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
+		8596B7F32488F59800ABC010 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85A38047244712C8002649EE /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		85A380492447699D002649EE /* LoadingDotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDotView.swift; sourceTree = "<group>"; };
 		85A6F1D82472848D00BAAECF /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				852787922431FBF200078C48 /* Assets.xcassets */,
 				852787942431FBF200078C48 /* LaunchScreen.storyboard */,
 				852787972431FBF200078C48 /* Info.plist */,
+				8596B7F32488F59800ABC010 /* GoogleService-Info.plist */,
 			);
 			path = VK_GeekBrains;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				85B4B202246C402900348238 /* CodableModel */,
+				855A08A12488FC9C00A37070 /* FirebaseUser.swift */,
 				855893392437743900B9C310 /* SettingsSinglton.swift */,
 				85695AD224332B350037DCA2 /* Users.swift */,
 				85695AD4243331B80037DCA2 /* Groups.swift */,
@@ -521,6 +527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				852787962431FBF200078C48 /* LaunchScreen.storyboard in Resources */,
+				8596B7F42488F59800ABC010 /* GoogleService-Info.plist in Resources */,
 				852787932431FBF200078C48 /* Assets.xcassets in Resources */,
 				852787912431FBEE00078C48 /* Main.storyboard in Resources */,
 			);
@@ -585,6 +592,7 @@
 				856264BE2438D02D00D10B56 /* LikeControl.swift in Sources */,
 				859147A1244F87A200881878 /* PushAnimator.swift in Sources */,
 				85695AD324332B350037DCA2 /* Users.swift in Sources */,
+				855A08A22488FC9C00A37070 /* FirebaseUser.swift in Sources */,
 				852787A02432345E00078C48 /* MyFriendViewController.swift in Sources */,
 				8572B7EB246D356B00D04333 /* NewsModel.swift in Sources */,
 				857A086D2476D8130069D27B /* FileTableView.swift in Sources */,

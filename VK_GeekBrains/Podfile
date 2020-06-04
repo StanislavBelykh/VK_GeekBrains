@@ -7,5 +7,6 @@ target 'VK_GeekBrains' do
 
   # Pods for VK_GeekBrains
   pod 'RealmSwift', '~> 5.0.0'
+  pod 'Firebase/Database'
 
 end
