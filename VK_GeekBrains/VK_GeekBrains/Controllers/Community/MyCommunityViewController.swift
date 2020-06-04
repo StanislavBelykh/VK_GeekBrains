@@ -36,6 +36,20 @@ class MyCommunityViewController: UIViewController {
         realmManager.updateCommunites()
         pairTableAndRealm()
 
+        ref.observe(.value, with: { snapshot in
+            var communities: [FirebaseCommunity] = []
+           
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let city = FirebaseCommunity(snapshot: snapshot) {
+                    communities.append(city)
+                }
+            }
+            print("Обновлен список добавленных групп")
+            communities.forEach{ print($0.name) }
+            print(communities.count)
+        })
+
     }
     
     func pairTableAndRealm() {
