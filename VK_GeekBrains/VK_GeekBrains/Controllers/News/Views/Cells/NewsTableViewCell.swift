@@ -129,9 +129,6 @@ class NewsTableViewCell: UITableViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
-        
     }
 
 }

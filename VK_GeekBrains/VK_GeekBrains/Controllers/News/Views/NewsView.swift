@@ -62,6 +62,7 @@ class NewsTableView: UITableView {
         for url in urls {
             if let image = self.imageServise?.photo(atIndexpath: indexPath, byUrl: url) {
                 images.append(image)
+                self.cellForRow(at: indexPath)?.reloadInputViews()
             }
         }
         return images
@@ -87,11 +88,9 @@ extension NewsTableView: UITableViewDataSource {
         cell.titleLabel.text = post.text
         cell.likeControl.setLike(count: post.likes.count)
         
-//        guard let photosURL = post.photosURL else {return cell}
+        guard let photosURL = post.photosURL else {return cell}
+        cell.photoView.photos = self.loadImeges(indexPath: indexPath, urls: photosURL)
         
-//        cell.photoView.photos = self.loadImeges(indexPath: indexPath, urls: photosURL)
-        
-
         return cell
     }
     

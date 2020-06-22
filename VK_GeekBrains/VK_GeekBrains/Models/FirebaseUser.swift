@@ -9,36 +9,39 @@
 import Foundation
 import Firebase
 
-// TODO: - Сделать как объект 
-//class FirebaseUser {
-//    let id: Int
-//    var communities: [FirebaseCommunity]?
-//    let ref: DatabaseReference?
-//
-//    init(id: Int){
-//        self.id = id
-//        self.ref = nil
-//        self.communities = nil
-//    }
-//    init?(snapshot: DataSnapshot) {
-//        guard
-//            let value = snapshot.value as? [String: Any],
-//            let id = value["id"] as? Int,
-//            let communities = value["communities"] as? [FirebaseCommunity] else {
-//                return nil
-//        }
-//        self.ref = snapshot.ref
-//        self.id = id
-//        self.communities = communities
-//    }
-//
-//    func toAnyObject() -> [String: Any] {
-//        return [
-//            "id": id,
-//            "communities" : communities
-//        ]
-//    }
-//}
+// TODO: - Сделать как объект
+class FirebaseUser {
+    let id: Int
+    var communities: [FirebaseCommunity] = []
+    let ref: DatabaseReference?
+    var toFire: [String: Any] {
+        return communities.map{ $0.toAnyObject() }.reduce([:]) { $0.merging($1) { (current, _) in current } }
+    }
+
+    init(id: Int){
+        self.id = id
+        self.ref = nil
+        self.communities = []
+    }
+    init?(snapshot: DataSnapshot) {
+        guard
+            let value = snapshot.value as? [String: Any],
+            let id = value["id"] as? Int,
+            let communities = value["communities"] as? [FirebaseCommunity] else {
+                return nil
+        }
+        self.ref = snapshot.ref
+        self.id = id
+        self.communities = communities
+    }
+
+    func toAnyObject() -> [String: Any] {
+        return [
+            "id": id,
+            "communities" : toFire
+        ]
+    }
+}
 class FirebaseCommunity {
     
     let name: String

@@ -60,7 +60,7 @@ class ImageService {
     
     private var images = [String: UIImage]()
     
-    private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
+    private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String ) {
         
         guard let urlRequest = URL(string: url) else { return }
         let request = URLRequest(url: urlRequest)
@@ -78,13 +78,16 @@ class ImageService {
             
         }.resume()
         
+        
     }
     
     func photo(atIndexpath indexPath: IndexPath, byUrl url: String) -> UIImage? {
         var image: UIImage?
         if let photo = images[url] {
             image = photo
-        } else if let photo = getImageFromCache(url: url) {
+        } else
+        
+        if let photo = getImageFromCache(url: url) {
             image = photo
         } else {
             loadPhoto(atIndexpath: indexPath, byUrl: url)
@@ -118,6 +121,7 @@ extension ImageService {
         
         func reloadRow(atIndexpath indexPath: IndexPath) {
             table.reloadRows(at: [indexPath], with: .none)
+            
         }
         
     }

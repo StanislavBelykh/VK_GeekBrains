@@ -16,7 +16,7 @@ class MyCommunityViewController: UIViewController {
     
     
     private var communitesFirebase = [FirebaseCommunity]()
-    private let ref = Database.database().reference(withPath: "Users").child( String(Session.shared.userID!))
+    private let ref = Database.database().reference(withPath: "Users") //.child( String(Session.shared.userID!))
     
     let networkService = NetworkingService()
     var realmManager = RealmManager()
@@ -83,10 +83,16 @@ class MyCommunityViewController: UIViewController {
                 let community = allCommunityController.communites[indexPath.row]
                 networkService.joinCommunity(id: community.id, onComplete: { [weak self] (value) in
                     if value == 1 {
-                        let fireCom = FirebaseCommunity(name: community.name, id: community.id)
-                        let comRef = self?.ref.child(community.name.lowercased())
                         
-                        comRef?.setValue(fireCom.toAnyObject())
+                        let fireUser = FirebaseUser(id: Session.shared.userID!)
+                        fireUser.communities.append(FirebaseCommunity(name: community.name, id: community.id))
+                        let userRef = self?.ref.child(String(Session.shared.userID!))
+                        userRef?.setValue(fireUser.toAnyObject())
+
+//                        let fireCom = FirebaseCommunity(name: community.name, id: community.id)
+//                        let comRef = self?.ref.child(community.name.lowercased())
+//
+//                        comRef?.setValue(fireCom.toAnyObject())
                         
                         print("Запрос на вступление в группу отправлен")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {

@@ -204,6 +204,7 @@ extension MyFriendViewController: UITableViewDataSource{
         cell.nameLabel.text = friend.firstName + " " + friend.lastName
         cell.avatarImageView.image = imageService?.photo(atIndexpath: indexPath, byUrl: friend.avatarURL)
         
+        
         return cell
     }
 }

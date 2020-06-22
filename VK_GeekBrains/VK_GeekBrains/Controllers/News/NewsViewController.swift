@@ -23,6 +23,7 @@ class NewsViewController: UIViewController {
         super.viewDidLoad()
         
         networkService.getNews(onComplete: { (news) in
+            print(news)
             self.view().newsTableView.news = news
             self.view().newsTableView.reloadData()
         }) { (error) in
