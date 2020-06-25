@@ -106,8 +106,9 @@ class NetworkingService {
                 onComplete(news)
             }
         }
-        task.resume()
-        
+        DispatchQueue.global(qos: .userInitiated).async {
+            task.resume()
+        }  
     }
     
     //MARK: - Community User
