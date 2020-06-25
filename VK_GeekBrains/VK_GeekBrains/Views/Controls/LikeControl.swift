@@ -49,11 +49,21 @@ class LikeControl: UIControl {
     }
     func setLikeCounterLabel(){
         addSubview(likeCountLabel)
+        let likeString: String?
+        
+        switch likeCounter {
+        case 0..<1000:
+            likeString = String(self.likeCounter)
+        case 1000..<1_000_000:
+            likeString = String(self.likeCounter/1000) + "K"
+        default:
+            likeString = "-"
+        }
         UIView.transition(with: likeCountLabel,
                           duration: 0.3,
                           options: .transitionFlipFromTop,
                           animations: {
-                        self.likeCountLabel.text = String(self.likeCounter)
+                        self.likeCountLabel.text = String(likeString!)
         })
         
              

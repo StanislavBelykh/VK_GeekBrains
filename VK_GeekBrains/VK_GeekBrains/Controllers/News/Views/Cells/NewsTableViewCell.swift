@@ -20,7 +20,6 @@ class NewsTableViewCell: UITableViewCell {
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         return avatarView
     }()
-    
     let labelCreator: UILabel = {
         let labelCreator = UILabel()
         labelCreator.textColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
@@ -39,6 +38,13 @@ class NewsTableViewCell: UITableViewCell {
         titleLabel.numberOfLines = 5
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         return titleLabel
+    }()
+    let commentCountLable: UILabel = {
+        let commentCountLable = UILabel()
+        commentCountLable.textColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+        commentCountLable.translatesAutoresizingMaskIntoConstraints = false
+        commentCountLable.text = ""
+        return commentCountLable
     }()
     let commentButton: UIButton = {
         let commentButton = UIButton()
@@ -69,6 +75,7 @@ class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(photoView)
         contentView.addSubview(likeControl)
+        contentView.addSubview(commentCountLable)
         contentView.addSubview(commentButton)
         contentView.addSubview(repostButton)
         
@@ -76,7 +83,7 @@ class NewsTableViewCell: UITableViewCell {
         likeControl.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-
+            
             avatarView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             avatarView.heightAnchor.constraint(equalToConstant: 50),
@@ -100,13 +107,16 @@ class NewsTableViewCell: UITableViewCell {
             photoView.heightAnchor.constraint(equalToConstant: frame.width * 4/3),
             
             likeControl.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
-            likeControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            likeControl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 60),
             likeControl.heightAnchor.constraint(equalToConstant: 20),
             likeControl.widthAnchor.constraint(equalToConstant: 20),
             likeControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
+            commentCountLable.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
+            commentCountLable.leadingAnchor.constraint(equalTo: likeControl.trailingAnchor, constant: 20),
+            
             commentButton.topAnchor.constraint(equalTo: photoView.bottomAnchor, constant: 8),
-            commentButton.leadingAnchor.constraint(equalTo: likeControl.trailingAnchor, constant: 20),
+            commentButton.leadingAnchor.constraint(equalTo: commentCountLable.trailingAnchor, constant: 8),
             commentButton.heightAnchor.constraint(equalToConstant: 20),
             commentButton.widthAnchor.constraint(equalToConstant: 20),
             
@@ -114,93 +124,21 @@ class NewsTableViewCell: UITableViewCell {
             repostButton.leadingAnchor.constraint(equalTo: commentButton.trailingAnchor, constant: 20),
             repostButton.heightAnchor.constraint(equalToConstant: 20),
             repostButton.widthAnchor.constraint(equalToConstant: 20),
-            
         ])
-            }
-
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
-}
-
-class  PhotoView: UIView {
     
-    var photos: [UIImage?]?
-    
-    let imageView = UIImageView()
-    let collageView1 = UIImageView()
-    let collageView2 = UIImageView()
-    let collageView3 = UIImageView()
-    let collageView4 = UIImageView()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.setImages()
-    }
-    
-    func setImages(){
-        guard let photos = photos, !photos.isEmpty else {
-            return
-        }
-        if photos.count > 3 {
-            addSubview(collageView1)
-            addSubview(collageView2)
-            addSubview(collageView3)
-            addSubview(collageView4)
-            collageView1.translatesAutoresizingMaskIntoConstraints = false
-            collageView2.translatesAutoresizingMaskIntoConstraints = false
-            collageView3.translatesAutoresizingMaskIntoConstraints = false
-            collageView4.translatesAutoresizingMaskIntoConstraints = false
-            
-            collageView1.image = photos[0]
-            collageView2.image = photos[1]
-            collageView3.image = photos[2]
-            collageView4.image = photos[3]
-            
-            collageView1.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            collageView1.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-            collageView1.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -frame.width/4).isActive = true
-            collageView1.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            
-            collageView2.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            collageView2.leadingAnchor.constraint(equalTo: collageView1.trailingAnchor).isActive = true
-            collageView2.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            collageView2.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
-            
-            collageView3.topAnchor.constraint(equalTo: collageView2.bottomAnchor).isActive = true
-            collageView3.leadingAnchor.constraint(equalTo: collageView1.trailingAnchor).isActive = true
-            collageView3.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            collageView3.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
-            
-            collageView4.topAnchor.constraint(equalTo: collageView3.bottomAnchor).isActive = true
-            collageView4.leadingAnchor.constraint(equalTo: collageView1.trailingAnchor).isActive = true
-            collageView4.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            collageView4.heightAnchor.constraint(equalToConstant: frame.height/3).isActive = true
-            
-        } else {
-            addSubview(imageView)
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            
-            imageView.image = photos[0]
-            
-            imageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    func configure(post: NewsModel, loadImages: @escaping () -> Void ){
+        self.dateLabel.text = post.getStringDate()
+        self.titleLabel.text = post.text
+        self.likeControl.setLike(count: post.likes.count)
+        self.commentCountLable.text = String(post.comments.count)
+        DispatchQueue.main.async {
+            loadImages()
         }
     }
 }
+

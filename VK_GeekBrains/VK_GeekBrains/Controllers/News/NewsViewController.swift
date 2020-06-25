@@ -22,10 +22,9 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkService.getNews(onComplete: { (news) in
-            print(news)
-            self.view().newsTableView.news = news
-            self.view().newsTableView.reloadData()
+        networkService.getNews(onComplete: { [weak self] (news) in
+            self?.view().newsTableView.news = news
+            self?.view().newsTableView.reloadData()
         }) { (error) in
             print(error)
         }

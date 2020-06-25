@@ -8,12 +8,59 @@
 
 import UIKit
 
+class ResponseNews: Codable {
+    let response: ItemsNews
+    
+}
+
+class ItemsNews: Codable {
+    let items: [NewsModel]
+    let profiles: [ProfileNews]
+    let groups: [GroupNews]
+    let nextFrom: String
+    
+    enum CodingKeys: String, CodingKey {
+        case items
+        case profiles
+        case groups
+        case nextFrom = "next_from"
+    }
+    
+}
+
+class ProfileNews: Codable {
+    let id: Int
+    let firstName: String
+    let lastName: String
+    let avatarURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case firstName
+        case lastName
+        case avatarURL = "photo_100"
+    }
+}
+
+class GroupNews: Codable {
+    let id: Int
+    let name: String
+    let avatarURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case avatarURL = "photo_100"
+    }
+}
+
 class NewsModel: Codable {
     let postID: Int
     let text: String
     let date: Double
     let attachments: [Attachment]?
     let likes: LikeModel
+    let comments: CommentModel
     var photosURL: [String]? {
         get {
             let photosURL = attachments?.compactMap{ $0.photo?.sizes?.last?.url }
@@ -61,7 +108,9 @@ class NewsModel: Codable {
         case text
         case date
         case likes
+        case comments
         case attachments
+        
     }
     
     func getStringDate() -> String {
@@ -92,5 +141,8 @@ class SizeNews: Codable {
 }
 
 struct LikeModel: Codable {
+    let count: Int
+}
+struct CommentModel: Codable {
     let count: Int
 }

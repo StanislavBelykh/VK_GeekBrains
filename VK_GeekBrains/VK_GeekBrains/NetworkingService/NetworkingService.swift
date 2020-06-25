@@ -88,7 +88,6 @@ class NetworkingService {
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
-        print(urlConstructor.url!)
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
             
             if error != nil {
