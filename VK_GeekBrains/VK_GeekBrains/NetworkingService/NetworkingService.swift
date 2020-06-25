@@ -98,10 +98,32 @@ class NetworkingService {
                 onError(ServerError.noDataProvided)
                 return
             }
-            guard let news = try? JSONDecoder().decode(Response<NewsModel>.self, from: data).response.items else {
+            guard var news = try? JSONDecoder().decode(Response<NewsModel>.self, from: data).response.items else {
                 onError(ServerError.failedToDecode)
                 return
             }
+            guard let profiles = try? JSONDecoder().decode(ResponseNews.self, from: data).response.profiles else {
+                onError(ServerError.failedToDecode)
+                print("Error profiles")
+                return
+            }
+            guard let groups = try? JSONDecoder().decode(ResponseNews.self, from: data).response.groups else {
+                onError(ServerError.failedToDecode)
+                print("Error groups")
+                return
+            }
+            for i in 0..<news.count {
+                if news[i].sourceID < 0 {
+                    let group = groups.first(where: { $0.id == -news[i].sourceID })
+                    news[i].avatarURL = group?.avatarURL
+                    news[i].creatorName = group?.name
+                } else {
+                    let profile = profiles.first(where: { $0.id == news[i].sourceID })
+                    news[i].avatarURL = profile?.avatarURL
+                    news[i].creatorName = profile?.firstName
+                }
+            }
+            
             DispatchQueue.main.async {
                 onComplete(news)
             }

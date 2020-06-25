@@ -25,7 +25,6 @@ struct ItemsNews: Codable {
         case nextFrom = "next_from"
     }
 }
-
 struct ProfileNews: Codable {
     let id: Int
     let firstName: String
@@ -34,12 +33,11 @@ struct ProfileNews: Codable {
     
     enum CodingKeys: String, CodingKey {
         case id
-        case firstName
-        case lastName
+        case firstName = "first_name"
+        case lastName = "last_name"
         case avatarURL = "photo_100"
     }
 }
-
 struct GroupNews: Codable {
     let id: Int
     let name: String

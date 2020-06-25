@@ -136,6 +136,9 @@ class NewsTableViewCell: UITableViewCell {
         self.titleLabel.text = post.text
         self.likeControl.setLike(count: post.likes.count)
         self.commentCountLable.text = String(post.comments.count)
+        self.labelCreator.text = post.creatorName
+        self.avatarView.loadImage(by: post.avatarURL ?? "")
+        
         DispatchQueue.main.async {
             loadImages()
         }

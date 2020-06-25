@@ -323,10 +323,10 @@
 		85B4B202246C402900348238 /* CodableModel */ = {
 			isa = PBXGroup;
 			children = (
+				853E6B6724A4D13F00FD4C3A /* News */,
 				85B4B209246C682B00348238 /* Response.swift */,
 				85B4B20B246C8D1F00348238 /* Friend.swift */,
 				85B4B20D246C8E0000348238 /* Community.swift */,
-				853E6B6724A4D13F00FD4C3A /* News */,
 				8572B7EC246D3B4D00D04333 /* Photo.swift */,
 				85B4B1FC246C3F7500348238 /* FileModel.swift */,
 			);
