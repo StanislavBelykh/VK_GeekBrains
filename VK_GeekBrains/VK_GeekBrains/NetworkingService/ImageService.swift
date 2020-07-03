@@ -11,6 +11,7 @@ import UIKit
 class ImageService {
     
     private let cacheLifeTime: TimeInterval = 30 * 24 * 60 * 60
+    private var images = [String: UIImage]()
     private static let pathName: String = {
         
         let pathName = "images"
@@ -52,14 +53,12 @@ class ImageService {
             lifeTime <= cacheLifeTime,
             let image = UIImage(contentsOfFile: fileName) else { return nil }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [unowned self] in
             self.images[url] = image
         }
         return image
     }
-    
-    private var images = [String: UIImage]()
-    
+
     private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String ) {
         
         guard let urlRequest = URL(string: url) else { return }
@@ -68,17 +67,15 @@ class ImageService {
             guard
                 let data = data,
                 let image = UIImage(data: data) else { return }
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.images[url] = image
             }
             self.saveImageToCache(url: url, image: image)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.container.reloadRow(atIndexpath: indexPath)
             }
             
         }.resume()
-        
-        
     }
     
     func photo(atIndexpath indexPath: IndexPath, byUrl url: String) -> UIImage? {
@@ -123,7 +120,6 @@ extension ImageService {
             table.reloadRows(at: [indexPath], with: .none)
             
         }
-        
     }
     
     private class Collection: DataReloadable {

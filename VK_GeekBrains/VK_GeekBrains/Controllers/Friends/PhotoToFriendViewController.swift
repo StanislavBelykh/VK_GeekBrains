@@ -12,11 +12,11 @@ class PhotoToFriendViewController: UIViewController, PhotoToFriendViewController
     
     var galleryCollectionView = GalleryCollectionView()
     var userID: Int?
-    var needUpdate: Bool = true
+    private var needUpdate: Bool = true
     var photos: [Photo]?
     
-    let networkService = NetworkingService()
-    let realmManager = RealmManager()
+    private let networkService = NetworkingService()
+    private let realmManager = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()

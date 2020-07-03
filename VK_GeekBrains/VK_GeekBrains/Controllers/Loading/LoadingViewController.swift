@@ -10,13 +10,13 @@ import UIKit
 
 class LoadingViewController: UIViewController {
     
-    @IBOutlet weak var leftDot: UIView!
+    @IBOutlet private weak var leftDot: UIView!
     
-    @IBOutlet weak var middleDot: UIView!
+    @IBOutlet private weak var middleDot: UIView!
     
-    @IBOutlet weak var rightDot: UIView!
+    @IBOutlet private weak var rightDot: UIView!
     
-    var counter = 0
+    private var counter = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()

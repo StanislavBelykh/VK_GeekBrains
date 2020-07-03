@@ -10,66 +10,71 @@ import UIKit
 
 class AllCommunityViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
-    var searchController: UISearchController!
-    var searchText = ""
+    private var searchController: UISearchController!
+    private var searchText = ""
     
-    var imageService: ImageService?
-    let networkService = NetworkingService()
-    var isSearching = false
+    private var imageService: ImageService?
+    private let networkService = NetworkingService()
+    private var isSearching = false
     
     var communites = [Community]()
+    var didSelectIndexCommunity: Int?
       
     override func viewDidLoad() {
         super.viewDidLoad()
         imageService = ImageService(container: tableView)
         configureSearchController()
     }
-    
 }
+
+//MARK: - Search Bar
 extension AllCommunityViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
-            return
-        }
-        if !isSearching {
-            isSearching.toggle()
-            networkService.getSearchCommunity(text: searchText, onComplete: { [weak self] (communites) in
-                self?.communites = communites
-                self?.tableView.reloadData()
-                self?.isSearching.toggle()
-            }) { (error) in
-                self.isSearching.toggle()
-                print(error)
-            }
-        }
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty, isSearching else { return }
+
+        isSearching.toggle()
+        networkService.getSearchCommunity(text: searchText, onComplete: { [weak self] (communites) in
+            self?.communites = communites
+            self?.tableView.reloadData()
+            self?.isSearching.toggle()
+        }, onError: { [unowned self] (error) in
+            self.isSearching.toggle()
+            print(error)
+        })
     }
-    func  searchBarTextDidBeginEditing ( _  searchBar : UISearchBar) {
-        communites.removeAll()
-        tableView.reloadData()
-    }
-    func  searchBarCancelButtonClicked ( _  searchBar : UISearchBar) {
+    
+    func searchBarTextDidBeginEditing( _  searchBar : UISearchBar) {
         communites.removeAll()
         tableView.reloadData()
     }
     
-    func configureSearchController() {
+    func searchBarCancelButtonClicked( _  searchBar : UISearchBar) {
+        communites.removeAll()
+        tableView.reloadData()
+    }
+    
+    private func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Поиск"
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
-        
     }
-    
-    
 }
+//MARK: - UITableViewDelegate
 extension AllCommunityViewController: UITableViewDelegate{
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectIndexCommunity = indexPath.row
+    }
 }
-extension AllCommunityViewController: UITableViewDataSource{
+//MARK: - UITableViewDataSource
+extension AllCommunityViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return communites.count
     }
@@ -78,10 +83,10 @@ extension AllCommunityViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "allCommunityCell", for: indexPath) as! AllCommunityTableViewCell
         
         let community = communites[indexPath.row]
+        let imageCommunity = imageService?.photo(atIndexpath: indexPath, byUrl: community.avatarURL)
         
-        cell.nameCommunityLabel.text = community.name
-        cell.imageCommunityView.image = imageService?.photo(atIndexpath: indexPath, byUrl: community.avatarURL)
-  
+        cell.configure(imageCommunity: imageCommunity, nameCommunity: community.name)
+
         return cell
     }
 }

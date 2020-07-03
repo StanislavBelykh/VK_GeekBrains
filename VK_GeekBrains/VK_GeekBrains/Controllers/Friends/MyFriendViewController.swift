@@ -11,7 +11,7 @@ import RealmSwift
 
 class MyFriendViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private var lettersControl: LettersControl?
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
@@ -20,17 +20,17 @@ class MyFriendViewController: UIViewController {
         }
         return text.isEmpty
     }
-    var imageService: ImageService?
-    let networkService = NetworkingService()
-    let realmManager = RealmManager()
+    private var imageService: ImageService?
+    private let networkService = NetworkingService()
+    private let realmManager = RealmManager()
     
-    var token: NotificationToken?
+    private var token: NotificationToken?
     
-    var data = [Friend]()
-    var friends: Results<Friend>? //[Friend]()
-    var friendsDict = [Character:[Friend]]()
+    private var data = [Friend]()
+    private var friends: Results<Friend>? //[Friend]()
+    private var friendsDict = [Character:[Friend]]()
     
-    var firstLetters: [Character] {
+    private var firstLetters: [Character] {
         get {
             friendsDict.keys.sorted()
         }
@@ -157,7 +157,7 @@ extension MyFriendViewController: UISearchResultsUpdating{
         tableView.reloadData()
     }
 }
-
+//MARK: - UITableViewDelegate
 extension MyFriendViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
@@ -175,36 +175,38 @@ extension MyFriendViewController: UITableViewDelegate{
         })
     }  
 }
-
+//MARK: - UITableViewDataSource
 extension MyFriendViewController: UITableViewDataSource{
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return friendsDict.keys.count
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let footer = FooterForTable()
         footer.label.text = String(firstLetters[section].uppercased())
         
         return footer
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard !firstLetters.isEmpty else {return 0}
         let key = firstLetters[section]
         return friendsDict[key]?.count ?? 0
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as! FriendTableViewCell
         
         let key = firstLetters[indexPath.section]
         let friendsForKey = friendsDict[key]
+        
         guard let friend = friendsForKey?[indexPath.row] else { return cell }
-        
-        cell.nameLabel.text = friend.firstName + " " + friend.lastName
-        cell.avatarImageView.image = imageService?.photo(atIndexpath: indexPath, byUrl: friend.avatarURL)
-        
-        
+        let nameLabelText = friend.firstName + " " + friend.lastName
+        let avatarImage = imageService?.photo(atIndexpath: indexPath, byUrl: friend.avatarURL)
+        cell.configure(nameLabelText: nameLabelText, avatarImage: avatarImage)
+
         return cell
     }
 }

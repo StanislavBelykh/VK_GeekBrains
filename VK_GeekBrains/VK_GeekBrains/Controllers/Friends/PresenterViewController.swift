@@ -41,9 +41,9 @@ class PresenterViewController: UIViewController {
     }
     
     func setImage(){
-        var indexPhotoLeft: Int = selectedPhoto - 1
-        let indexPhotoMid: Int = selectedPhoto
-        var indexPhotoRight: Int = selectedPhoto + 1
+        var indexPhotoLeft = selectedPhoto - 1
+        let indexPhotoMid = selectedPhoto
+        var indexPhotoRight = selectedPhoto + 1
         
         if indexPhotoLeft < 0 {
             indexPhotoLeft = photos.count - 1
@@ -112,7 +112,7 @@ class PresenterViewController: UIViewController {
             withDuration: 1,
             delay: 0,
             options: [],
-            animations: {
+            animations: { [unowned self] in
                 self.middleImageView.transform = .identity
                 self.rightImageView.transform = .identity
                 self.leftImageView.transform = .identity
@@ -130,14 +130,14 @@ class PresenterViewController: UIViewController {
                         withDuration: 0.01,
                         delay: 0,
                         options: [],
-                        animations: {
+                        animations: { [unowned self] in
                             let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                             let translation = CGAffineTransform(translationX: self.view.bounds.maxX - 40, y: 0)
                             let transform = scale.concatenating(translation)
                             self.middleImageView.transform = transform
                             self.rightImageView.transform = transform
                             self.leftImageView.transform = transform
-                    }, completion: { _ in
+                    }, completion: { [unowned self] _ in
                         self.selectedPhoto -= 1
                         if self.selectedPhoto < 0 {
                             self.selectedPhoto = self.photos.count - 1
@@ -153,14 +153,14 @@ class PresenterViewController: UIViewController {
                         withDuration: 0.01,
                         delay: 0,
                         options: [],
-                        animations: {
+                        animations: { [unowned self] in
                             let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                             let translation = CGAffineTransform(translationX: -self.view.bounds.maxX + 40, y: 0)
                             let transform = scale.concatenating(translation)
                             self.middleImageView.transform = transform
                             self.rightImageView.transform = transform
                             self.leftImageView.transform = transform
-                    }, completion: { _ in
+                    }, completion: { [unowned self] _ in
                         self.selectedPhoto += 1
                         if self.selectedPhoto > self.photos.count - 1 {
                             self.selectedPhoto = 0

@@ -18,7 +18,7 @@ extension UIImageView {
         if let imageDate = cache.cachedResponse(for: request)?.data {
             self.image = UIImage(data: imageDate)
         } else {
-            URLSession.shared.dataTask(with: request) { (data, response, _ ) in
+            URLSession.shared.dataTask(with: request) { [unowned self] (data, response, _ ) in
                 guard let data = data, let response = response else {
                     return
                 }

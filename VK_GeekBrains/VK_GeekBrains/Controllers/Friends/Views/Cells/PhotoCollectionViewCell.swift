@@ -12,9 +12,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let reusedID = "PhotoCollectionViewCell"
     
-    let likeControl = LikeControl()
+    private let likeControl = LikeControl()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 2
@@ -26,7 +26,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let shadowView: UIView = {
+    private let shadowView: UIView = {
         let shadowView = UIView()
         shadowView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         shadowView.layer.cornerRadius = 10
@@ -45,33 +45,37 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         addSubview(imageView)
         
         setLikeControl()
-        
-        imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
-        
-        shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
-        shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        shadowView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            shadowView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            shadowView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            shadowView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            likeControl.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0),
+            likeControl.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
+            likeControl.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.15),
+            likeControl.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.15)
+        ])
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
-    func setLikeControl() {
-        
+    func configure(image: UIImage?){
+        imageView.image = image
+    }
+     
+    private func setLikeControl() {
         addSubview(likeControl)
         likeControl.translatesAutoresizingMaskIntoConstraints = false
-        
-        likeControl.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0).isActive = true
-        likeControl.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0).isActive = true
-        likeControl.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.15).isActive = true
-        likeControl.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.15).isActive = true
     }
-    
 }

@@ -63,7 +63,9 @@ extension GalleryCollectionView: UICollectionViewDataSource{
         let cell = dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.reusedID, for: indexPath) as! PhotoCollectionViewCell
         guard let photoURL = photos[indexPath.item].sizes.last?.url else { return cell }
         
-        cell.imageView.image = imageService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+        let image = imageService?.photo(atIndexpath: indexPath, byUrl: photoURL)
+        cell.configure(image: image)
+        
         return cell
     }
 }

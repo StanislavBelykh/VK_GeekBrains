@@ -10,11 +10,9 @@ import UIKit
 
 class FriendTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var shadowView: ShadowView!
-    
-
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var shadowView: ShadowView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,23 +22,23 @@ class FriendTableViewCell: UITableViewCell {
         avatarImageView.addGestureRecognizer(tap)
         avatarImageView.isUserInteractionEnabled = true
     }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
     
-    @objc func tapOnAvatar(_ tapGestureRecognizer: UITapGestureRecognizer){
+    func configure(nameLabelText: String?, avatarImage: UIImage?){
+        nameLabel.text = nameLabelText
+        avatarImageView.image = avatarImage
+    }
+
+    @objc func tapOnAvatar(_ tapGestureRecognizer: UITapGestureRecognizer) {
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: 0.3,
                        initialSpringVelocity: 1,
                        options: [.autoreverse],
-                       animations: {
+                       animations: { [unowned self] in
                         let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                         self.avatarImageView.transform = scale
                         self.shadowView.transform = scale
-                        
-        }) { _ in
+        }) { [unowned self] _ in
             self.avatarImageView.transform = .identity
             self.shadowView.transform = .identity
         }

@@ -10,14 +10,14 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var scrollBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var scrollBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var imageView: UIImageView!
     
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet private weak var loginTextField: UITextField!
     
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     
-    let networkService = NetworkingService()
+    private let networkService = NetworkingService()
 
     override func viewDidLoad() {
         super.viewDidLoad()

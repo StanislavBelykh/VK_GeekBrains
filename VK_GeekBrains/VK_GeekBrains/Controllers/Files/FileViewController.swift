@@ -53,18 +53,20 @@ class FileViewController: UIViewController, QLPreviewControllerDelegate {
     
     func loadData() {
         networkingService.getFiles(onComplete: { [weak self] (loadFiles) in
-            self?.loadFiles = loadFiles
+            guard let self = self else { return }
+            self.loadFiles = loadFiles
             for i in 0..<loadFiles.count {
-                self?.networkingService.downloadFile(loadFiles[i], isUserInitiated: false, completion: { (isComplete, destinationURL) in
+                self.networkingService.downloadFile(loadFiles[i], isUserInitiated: false, completion: { (isComplete, destinationURL) in
                     if isComplete{
-                        self?.loadFiles[i].destinationURL = destinationURL
-                        self?.loadFiles[i].state = .loaded
+                        self.loadFiles[i].destinationURL = destinationURL
+                        self.loadFiles[i].state = .loaded
                     }
                 })
             }
-            self?.loadFiles = self?.sortManager.sortedFor(files: self?.loadFiles, by: .name) ?? [FileModel]()
-            self?.files = self?.loadFiles ?? [FileModel]()
-            self?.homeView.reloadData()
+            
+            self.loadFiles = self.sortManager.sortedFor(files: self.loadFiles, by: .name) ?? [FileModel]()
+            self.files = self.loadFiles
+            self.homeView.reloadData()
         }) { (error) in
             print(error)
         }
@@ -135,6 +137,7 @@ extension FileViewController: UITableViewDelegate {
         }
         return action
     }
+    
     func editAction(at indexPath: IndexPath) -> UIContextualAction{
         let action = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
             let file = self.files[indexPath.row]
@@ -160,10 +163,9 @@ extension FileViewController: UITableViewDelegate {
         quickLookController.dataSource = self
         quickLookController.currentPreviewItemIndex = indexPath.row
         self.navigationController?.pushViewController(quickLookController, animated: true)
-        
     }
-    
 }
+
 // MARK: - DataSourse
 extension FileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

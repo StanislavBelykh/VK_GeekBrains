@@ -11,7 +11,7 @@ import WebKit
 
 class LoginWebViewController: UIViewController {
     
-    var webView = WKWebView()
+    private var webView = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

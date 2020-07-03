@@ -10,10 +10,9 @@ import UIKit
 
 class AllCommunityTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imageCommunityView: UIImageView!
-    @IBOutlet weak var shadowView: ShadowView!
-    @IBOutlet weak var nameCommunityLabel: UILabel!
-    
+    @IBOutlet private weak var imageCommunityView: UIImageView!
+    @IBOutlet private weak var shadowView: ShadowView!
+    @IBOutlet private weak var nameCommunityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,22 +21,26 @@ class AllCommunityTableViewCell: UITableViewCell {
         imageCommunityView.addGestureRecognizer(tap)
         imageCommunityView.isUserInteractionEnabled = true
     }
+    
+    func configure(imageCommunity: UIImage?, nameCommunity: String?) {
+        nameCommunityLabel.text = nameCommunity
+        imageCommunityView.image = imageCommunity
+    }
     @objc func tapOnAvatar(_ tapGestureRecognizer: UITapGestureRecognizer){
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        usingSpringWithDamping: 0.1,
                        initialSpringVelocity: 1,
                        options: [.autoreverse],
-                       animations: {
+                       animations: { [unowned self] in
                         let scale = CGAffineTransform(scaleX: 0.8, y: 0.8)
                         self.imageCommunityView.transform = scale
                         self.shadowView.transform = scale
                         
-        }) { _ in
+        }) { [unowned self] _ in
             self.imageCommunityView.transform = .identity
             self.shadowView.transform = .identity
             print(#function)
         }
     }
-
 }

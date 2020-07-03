@@ -12,21 +12,19 @@ import FirebaseDatabase
 
 class MyCommunityViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet private weak var tableView: UITableView!
     
     private var communitesFirebase = [FirebaseCommunity]()
     private let ref = Database.database().reference(withPath: "Users") //.child( String(Session.shared.userID!))
     
-    let networkService = NetworkingService()
-    var realmManager = RealmManager()
-    var imageService: ImageService?
+    private let networkService = NetworkingService()
+    private var realmManager = RealmManager()
+    private var imageService: ImageService?
     
-    var myCommunites = [Community]()
+    private var myCommunites = [Community]()
     
-    var communites: Results<Community>?
-    var token: NotificationToken?
-    
+    private var communites: Results<Community>?
+    private var token: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +47,9 @@ class MyCommunityViewController: UIViewController {
             communities.forEach{ print($0.name) }
             print(communities.count)
         })
-
     }
     
-    func pairTableAndRealm() {
+    private func pairTableAndRealm() {
         guard let realm = try? Realm() else { return }
         communites = realm.objects(Community.self)
         token = communites?.observe { [weak self] (changes: RealmCollectionChange) in
@@ -75,39 +72,35 @@ class MyCommunityViewController: UIViewController {
         }
     }
 
-    
-    @IBAction func addCommunity(segue: UIStoryboardSegue){
+    @IBAction private func addCommunity(segue: UIStoryboardSegue){
         if segue.identifier == "addCommunitySegue" {
             let allCommunityController = segue.source as! AllCommunityViewController
-            if let indexPath = allCommunityController.tableView.indexPathForSelectedRow {
-                let community = allCommunityController.communites[indexPath.row]
-                networkService.joinCommunity(id: community.id, onComplete: { [weak self] (value) in
-                    if value == 1 {
-                        
-                        let fireUser = FirebaseUser(id: Session.shared.userID!)
-                        fireUser.communities.append(FirebaseCommunity(name: community.name, id: community.id))
-                        let userRef = self?.ref.child(String(Session.shared.userID!))
-                        userRef?.setValue(fireUser.toAnyObject())
-
-//                        let fireCom = FirebaseCommunity(name: community.name, id: community.id)
-//                        let comRef = self?.ref.child(community.name.lowercased())
-//
-//                        comRef?.setValue(fireCom.toAnyObject())
-                        
-                        print("Запрос на вступление в группу отправлен")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                            self?.realmManager.updateCommunites()
-                        }
-                    } else {
-                        print("Запрос отклонен")
-                    }
-                }) { (error) in
-                    print(error)
+            guard let index = allCommunityController.didSelectIndexCommunity else { return }
+            
+            let community = allCommunityController.communites[index]
+            networkService.joinCommunity(id: community.id, onComplete: { [weak self] (value) in
+                guard value == 1 else {
+                    print("Запрос отклонен")
+                    return
                 }
-            }
+                
+                let fireUser = FirebaseUser(id: Session.shared.userID!)
+                fireUser.communities.append(FirebaseCommunity(name: community.name, id: community.id))
+                
+                let userRef = self?.ref.child(String(Session.shared.userID!))
+                userRef?.setValue(fireUser.toAnyObject())
+                
+                print("Запрос на вступление в группу отправлен")
+                DispatchQueue.main.async {
+                    self?.realmManager.updateCommunites()
+                }
+            }, onError: { (error) in
+                print(error)
+            })
         }
     }
 }
+//MARK: - UITableViewDelegate
 extension MyCommunityViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -138,6 +131,7 @@ extension MyCommunityViewController: UITableViewDelegate{
     }
     
 }
+//MARK: - UITableViewDataSource
 extension MyCommunityViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return communites?.count ?? 0
@@ -148,7 +142,6 @@ extension MyCommunityViewController: UITableViewDataSource{
         
         guard let community = communites?[indexPath.row] else { return cell}
   
-//        let community = myCommunites[indexPath.row]
         cell.nameCommunitylabel.text = community.name
         cell.imageCommunityView.image = imageService?.photo(atIndexpath: indexPath, byUrl: community.avatarURL)
         
