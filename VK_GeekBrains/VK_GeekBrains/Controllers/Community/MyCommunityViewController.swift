@@ -33,7 +33,7 @@ class MyCommunityViewController: UIViewController {
         
         realmManager.updateCommunites()
         pairTableAndRealm()
-
+        
         ref.observe(.value, with: { snapshot in
             var communities: [FirebaseCommunity] = []
            

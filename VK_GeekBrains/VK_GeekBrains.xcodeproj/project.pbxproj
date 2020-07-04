@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8504309224B0D4090061734E /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504309124B0D4090061734E /* AsyncOperation.swift */; };
+		8504309424B0D4460061734E /* GetDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504309324B0D4460061734E /* GetDataOperation.swift */; };
+		8504309824B0FB990061734E /* ParseDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504309724B0FB990061734E /* ParseDataOperation.swift */; };
+		8504309A24B0FC850061734E /* SavingDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504309924B0FC850061734E /* SavingDataOperation.swift */; };
 		85228BA22471AFEE001425DC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85228BA12471AFEE001425DC /* DateFormatter.swift */; };
 		8527878A2431FBEE00078C48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852787892431FBEE00078C48 /* AppDelegate.swift */; };
 		8527878C2431FBEE00078C48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8527878B2431FBEE00078C48 /* SceneDelegate.swift */; };
@@ -76,6 +80,10 @@
 /* Begin PBXFileReference section */
 		32FD3DD8A35063C5906753F2 /* Pods-VK_GeekBrains.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_GeekBrains.release.xcconfig"; path = "Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains.release.xcconfig"; sourceTree = "<group>"; };
 		6E3CCBA021C2C399BC7937CA /* Pods-VK_GeekBrains.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK_GeekBrains.debug.xcconfig"; path = "Target Support Files/Pods-VK_GeekBrains/Pods-VK_GeekBrains.debug.xcconfig"; sourceTree = "<group>"; };
+		8504309124B0D4090061734E /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		8504309324B0D4460061734E /* GetDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataOperation.swift; sourceTree = "<group>"; };
+		8504309724B0FB990061734E /* ParseDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDataOperation.swift; sourceTree = "<group>"; };
+		8504309924B0FC850061734E /* SavingDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingDataOperation.swift; sourceTree = "<group>"; };
 		85228BA12471AFEE001425DC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		852787862431FBEE00078C48 /* VK_GeekBrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_GeekBrains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852787892431FBEE00078C48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +170,16 @@
 				D6710DD216FCF9D3F621CCE9 /* Pods_VK_GeekBrains.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8504309B24B0FF6F0061734E /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				8504309324B0D4460061734E /* GetDataOperation.swift */,
+				8504309724B0FB990061734E /* ParseDataOperation.swift */,
+				8504309924B0FC850061734E /* SavingDataOperation.swift */,
+			);
+			path = Operation;
 			sourceTree = "<group>";
 		};
 		8527877D2431FBEE00078C48 = {
@@ -316,6 +334,7 @@
 			children = (
 				85228BA12471AFEE001425DC /* DateFormatter.swift */,
 				857A08682476D6FF0069D27B /* SortManager.swift */,
+				8504309124B0D4090061734E /* AsyncOperation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -346,9 +365,10 @@
 		85E29256246722A900181E70 /* NetworkingService */ = {
 			isa = PBXGroup;
 			children = (
+				8504309B24B0FF6F0061734E /* Operation */,
 				85E292522467212800181E70 /* Session.swift */,
-				85B4B1FA246C3EF800348238 /* NetworkingService.swift */,
 				85B4B203246C435900348238 /* NetworkConstants.swift */,
+				85B4B1FA246C3EF800348238 /* NetworkingService.swift */,
 				85A6F1D82472848D00BAAECF /* ImageService.swift */,
 				85B4B1FE246C3FE000348238 /* ServerError.swift */,
 			);
@@ -614,6 +634,7 @@
 				8572B7F1246EC07600D04333 /* UIImageView.swift in Sources */,
 				85589338243763A100B9C310 /* SettingsPikerControl.swift in Sources */,
 				85344CF0243351060048AB5D /* GalleryCollectionView.swift in Sources */,
+				8504309A24B0FC850061734E /* SavingDataOperation.swift in Sources */,
 				85B4B1FB246C3EF800348238 /* NetworkingService.swift in Sources */,
 				859147A3244F887100881878 /* PopAnimator.swift in Sources */,
 				85E31694244999C400B8DD10 /* PresenterViewController.swift in Sources */,
@@ -657,10 +678,12 @@
 				853B903A2478197B00915E48 /* RealmManager.swift in Sources */,
 				853E6B6624A47A0700FD4C3A /* PhotosContainer.swift in Sources */,
 				85B4B20A246C682B00348238 /* Response.swift in Sources */,
+				8504309824B0FB990061734E /* ParseDataOperation.swift in Sources */,
 				85A6F1D92472848D00BAAECF /* ImageService.swift in Sources */,
 				853E6B6924A4D20000FD4C3A /* ResponseNews.swift in Sources */,
 				85B4B20E246C8E0000348238 /* Community.swift in Sources */,
 				85B4B204246C435900348238 /* NetworkConstants.swift in Sources */,
+				8504309424B0D4460061734E /* GetDataOperation.swift in Sources */,
 				85ED3C9E243337E500415763 /* PhotoCollectionViewCell.swift in Sources */,
 				858088852440BF6D00D9CE05 /* NewsView.swift in Sources */,
 				85A3804A2447699D002649EE /* LoadingDotView.swift in Sources */,
@@ -668,6 +691,7 @@
 				8572B7ED246D3B4D00D04333 /* Photo.swift in Sources */,
 				858088892440C70100D9CE05 /* NewsTableViewCell.swift in Sources */,
 				85B0BBC42437359500B3953B /* AvatarView.swift in Sources */,
+				8504309224B0D4090061734E /* AsyncOperation.swift in Sources */,
 				85695AD5243331B80037DCA2 /* Groups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

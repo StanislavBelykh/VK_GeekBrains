@@ -8,8 +8,7 @@
 
 import UIKit
 
-class NewsViewController: UIViewController {
-    
+class NewsViewController: UIViewController {    
     
     let networkService = NetworkingService()
     
@@ -29,8 +28,6 @@ class NewsViewController: UIViewController {
             print(error)
         }
         title = "Новости"
-        
-
     }
     
     func view() -> NewsView {

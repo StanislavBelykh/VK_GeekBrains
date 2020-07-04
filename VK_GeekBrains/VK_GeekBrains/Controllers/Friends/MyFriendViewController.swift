@@ -21,7 +21,6 @@ class MyFriendViewController: UIViewController {
         return text.isEmpty
     }
     private var imageService: ImageService?
-    private let networkService = NetworkingService()
     private let realmManager = RealmManager()
     
     private var token: NotificationToken?
@@ -39,7 +38,7 @@ class MyFriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        realmManager.updateFriends()
+        realmManager.updateFriendsPromise()
         pairTableAndRealm()
 
         imageService = ImageService(container: tableView)

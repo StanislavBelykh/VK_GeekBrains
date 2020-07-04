@@ -8,12 +8,33 @@
 
 import Foundation
 import RealmSwift
+import PromiseKit
 
 class RealmManager {
-    var networkService: NetworkingService?
+    private var networkService: NetworkingService?
+    private let queue = OperationQueue()
     
     init() {
         networkService = NetworkingService()
+    }
+    
+    func updateFriendsPromise() {
+        networkService?.getFriendsPromise()
+            .get { friends in
+                do {
+                    let realm = try Realm()
+                    let oldValues = realm.objects(Friend.self)
+                    realm.beginWrite()
+                    realm.delete(oldValues)
+                    realm.add(friends)
+                    try realm.commitWrite()
+                } catch {
+                    print(error)
+                }
+            }
+            .catch{ (error) in
+                print(error)
+            }
     }
     
     func updateFriends(){
@@ -32,21 +53,22 @@ class RealmManager {
                 print(error)
         })
     }
+    //Обновление групп происодит через Operation
     func updateCommunites(){
-        networkService?.getCommunity(onComplete: { (communites) in
-            do {
-                let realm = try Realm()
-                let oldValues = realm.objects(Community.self)
-                realm.beginWrite()
-                realm.delete(oldValues)
-                realm.add(communites)
-                try realm.commitWrite()
-            } catch {
-                print(error)
-            }
-            }, onError: { (error) in
-                print(error)
-        })
+
+        let url = networkService?.getURLDataCommunites()
+        
+        let getDataOperation = GetDataOperation(urlRequest: url!)
+        queue.addOperation(getDataOperation)
+       
+        let parseDataOperation = ParseDataOperation<Community>()
+        parseDataOperation.addDependency(getDataOperation)
+        queue.addOperation(parseDataOperation)
+        
+        let savingDataOperation = SavingDataOperation<Community>()
+        savingDataOperation.addDependency(parseDataOperation)
+        queue.addOperation(savingDataOperation)
+
     }
     
     private func updatePhotos(for userID: Int? ){

@@ -104,14 +104,6 @@ class LoginViewController: UIViewController {
             print(error)
         }
         
-        networkService.getCommunity(onComplete: { (community) in
-            print(" ")
-            print("*** Community ***")
-            print(community)
-        }) { (error) in
-            print(error)
-        }
-        
         networkService.getSearchCommunity(text: "Mercedes", onComplete: { (community) in
             print(" ")
             print("*** Community for search text ***")

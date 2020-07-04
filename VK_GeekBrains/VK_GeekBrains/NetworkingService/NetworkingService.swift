@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import PromiseKit
 
 class NetworkingService {
     
-    var urlConstructor = URLComponents()
-    let constants = NetworkConstants()
-    let configuration: URLSessionConfiguration!
-    let session: URLSession!
+    private var urlConstructor = URLComponents()
+    private let constants = NetworkConstants()
+    private let configuration: URLSessionConfiguration!
+    private let session: URLSession!
     
     init(){
         urlConstructor.scheme = "https"
@@ -128,7 +129,7 @@ class NetworkingService {
                 onComplete(news)
             }
         }
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .utility).async {
             task.resume()
         }  
     }
@@ -136,19 +137,20 @@ class NetworkingService {
     //MARK: - Community User
     func getCommunity(onComplete: @escaping ([Community]) -> Void, onError: @escaping (Error) -> Void) {
         urlConstructor.path = "/method/groups.get"
-        
+
         urlConstructor.queryItems = [
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "fields", value: "description"),
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
+       
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
-            
+
             if error != nil {
                 onError(ServerError.errorTask)
             }
-            
+
             guard let data = data else {
                 onError(ServerError.noDataProvided)
                 return
@@ -157,11 +159,21 @@ class NetworkingService {
                 onError(ServerError.failedToDecode)
                 return
             }
-            DispatchQueue.main.async {
-                onComplete(communities)
-            }
+            onComplete(communities)
         }
         task.resume()
+    }
+    
+    func getURLDataCommunites() -> URL? {
+        urlConstructor.path = "/method/groups.get"
+
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "extended", value: "1"),
+            URLQueryItem(name: "fields", value: "description"),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: constants.versionAPI),
+        ]
+        return urlConstructor.url
     }
     func getSearchCommunity(text: String?, onComplete: @escaping ([Community]) -> Void, onError: @escaping (Error) -> Void) {
         urlConstructor.path = "/method/groups.search"
@@ -259,6 +271,7 @@ class NetworkingService {
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
+        
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
             
             if error != nil {
@@ -278,7 +291,36 @@ class NetworkingService {
             }
         }
         task.resume()
+    }
+    //MARK: - Promise Friends request
+    func getFriendsPromise() -> Promise<[Friend]> {
+        urlConstructor.path = "/method/friends.get"
         
+        urlConstructor.queryItems = [
+            URLQueryItem(name: "order", value: "name"),
+            URLQueryItem(name: "fields", value: "sex, bdate, city, country, photo_100, photo_200_orig"),
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: constants.versionAPI),
+        ]
+        
+        return Promise { resolver in
+            session.dataTask(with: urlConstructor.url!){ (data, response, error) in
+                
+                if error != nil {
+                    resolver.reject(ServerError.errorTask)
+                }
+                guard let data = data else {
+                    resolver.reject(ServerError.noDataProvided)
+                    return
+                }
+                guard let friends = try? JSONDecoder().decode(Response<Friend>.self, from: data).response.items else {
+                    resolver.reject(ServerError.failedToDecode)
+                    return
+                }
+                
+                resolver.fulfill(friends)
+            }
+        }
     }
     
     func getOnlineFriends(onComplete: @escaping ([Friend]) -> Void, onError: @escaping (Error) -> Void) {
@@ -393,7 +435,7 @@ class NetworkingService {
         }
         task.resume()
     }
-    // Стоит вынести в отдельный класс?
+
     func downloadFile(_ file: FileModel, isUserInitiated: Bool, completion: @escaping (_ success: Bool,_ filrLocation: URL?) -> Void){
         
         let fileURL = URL(string: file.url)
@@ -402,12 +444,16 @@ class NetworkingService {
         
         let destinationURL = documentDirectoryURL.appendingPathComponent("\(file.id)" + "." + "\(file.ext)" )
         
-        if FileManager.default.fileExists(atPath: destinationURL.path){
+        if FileManager.default.fileExists(atPath: destinationURL.path) {
+            
             debugPrint("Файл уже был загружен")
             completion(true, destinationURL)
+            
         } else if isUserInitiated{
+            
             URLSession.shared.downloadTask(with: fileURL!, completionHandler: { (location, response, error) -> Void in
                 guard let tempLocation = location, error == nil else { return }
+                
                 do {
                     try FileManager.default.moveItem(at: tempLocation, to: destinationURL)
                     completion(true, destinationURL)
