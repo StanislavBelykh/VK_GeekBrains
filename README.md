@@ -28,6 +28,6 @@
 
 ### Примеры экранов:
 
-<img src="./Screens/File.png" width="400" /> <img src="./Screens/Groups.png" width="400" />
-<img src="./Screens/Loading.png" width="400" /> <img src="./Screens/PresenterPhoto.png" width="400" />
+<img src="./Screens/File.png" width="400" />      <img src="./Screens/Groups.png" width="400" /> 
+<img src="./Screens/Loading.png" width="400" />     <img src="./Screens/PresenterPhoto.png" width="400" />
   
