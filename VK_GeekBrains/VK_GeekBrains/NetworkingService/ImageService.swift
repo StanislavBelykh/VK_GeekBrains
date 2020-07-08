@@ -63,18 +63,21 @@ class ImageService {
         
         guard let urlRequest = URL(string: url) else { return }
         let request = URLRequest(url: urlRequest)
+       
         URLSession.shared.dataTask(with: request) { (data, response, _ ) in
             guard
                 let data = data,
                 let image = UIImage(data: data) else { return }
+            
             DispatchQueue.main.async { [unowned self] in
                 self.images[url] = image
             }
+            
             self.saveImageToCache(url: url, image: image)
+            
             DispatchQueue.main.async { [unowned self] in
                 self.container.reloadRow(atIndexpath: indexPath)
             }
-            
         }.resume()
     }
     

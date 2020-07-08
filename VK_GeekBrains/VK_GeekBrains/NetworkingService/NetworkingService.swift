@@ -309,17 +309,18 @@ class NetworkingService {
                 if error != nil {
                     resolver.reject(ServerError.errorTask)
                 }
+                
                 guard let data = data else {
                     resolver.reject(ServerError.noDataProvided)
                     return
                 }
+                
                 guard let friends = try? JSONDecoder().decode(Response<Friend>.self, from: data).response.items else {
                     resolver.reject(ServerError.failedToDecode)
                     return
                 }
-                
                 resolver.fulfill(friends)
-            }
+            }.resume()
         }
     }
     
