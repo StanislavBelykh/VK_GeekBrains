@@ -18,8 +18,8 @@
 ## Pods 
 Для корректной работы используйте данные версии без обновления: 
   
-  RealmSwift 5.0.0 ;
-  Firebase/Database ;
+  RealmSwift 5.0.0 /n
+  Firebase/Database \n
   PromiseKit 6.8 ;
   
 ## Предупреждение 
