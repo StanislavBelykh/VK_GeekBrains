@@ -9,11 +9,11 @@
 import UIKit
 
 class  PhotoView: UIView {
-    let imageView = UIImageView()
-    let collageView1 = UIImageView()
-    let collageView2 = UIImageView()
-    let collageView3 = UIImageView()
-    let collageView4 = UIImageView()
+    private var imageView = UIImageView()
+    private var collageView1 = UIImageView()
+    private var collageView2 = UIImageView()
+    private var collageView3 = UIImageView()
+    private var collageView4 = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
