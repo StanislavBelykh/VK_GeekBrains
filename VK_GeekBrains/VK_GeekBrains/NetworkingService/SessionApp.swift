@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Session {
-    static var shared = Session()
+class SessionApp {
+    static var shared = SessionApp()
     
     var token: String?
     var userID: Int?

@@ -84,10 +84,10 @@ class MyCommunityViewController: UIViewController {
                     return
                 }
                 
-                let fireUser = FirebaseUser(id: Session.shared.userID!)
+                let fireUser = FirebaseUser(id: SessionApp.shared.userID!)
                 fireUser.communities.append(FirebaseCommunity(name: community.name, id: community.id))
                 
-                let userRef = self?.ref.child(String(Session.shared.userID!))
+                let userRef = self?.ref.child(String(SessionApp.shared.userID!))
                 userRef?.setValue(fireUser.toAnyObject())
                 
                 print("Запрос на вступление в группу отправлен")

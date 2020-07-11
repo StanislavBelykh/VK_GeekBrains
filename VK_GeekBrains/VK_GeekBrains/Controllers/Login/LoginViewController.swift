@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
             print(error)
         }
         
-        networkService.getPhoto(for: Session.shared.userID ?? 0, onComplete: { (photos) in
+        networkService.getPhoto(for: SessionApp.shared.userID ?? 0, onComplete: { (photos) in
             print(" ")
             print("*** Photos ***")
             print(photos)

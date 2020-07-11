@@ -11,15 +11,11 @@ import RealmSwift
 import PromiseKit
 
 class RealmManager {
-    private var networkService: NetworkingService?
+    private var networkService = NetworkingService()
     private let queue = OperationQueue()
     
-    init() {
-        networkService = NetworkingService()
-    }
-    
     func updateFriendsPromise() {
-        networkService?.getFriendsPromise()
+        networkService.getFriendsPromise()
             .get { friends in
                 do {
                     let realm = try Realm()
@@ -38,7 +34,7 @@ class RealmManager {
     }
     
     func updateFriends(){
-        networkService?.getFriends(onComplete: { (friends) in
+        networkService.getFriends(onComplete: { (friends) in
             do {
                 let realm = try Realm()
                 let oldValues = realm.objects(Friend.self)
@@ -55,8 +51,7 @@ class RealmManager {
     }
     //Обновление групп происодит через Operation
     func updateCommunites(){
-
-        let url = networkService?.getURLDataCommunites()
+        let url = networkService.getURLDataCommunites()
         
         let getDataOperation = GetDataOperation(urlRequest: url!)
         queue.addOperation(getDataOperation)
@@ -68,11 +63,10 @@ class RealmManager {
         let savingDataOperation = SavingDataOperation<Community>()
         savingDataOperation.addDependency(parseDataOperation)
         queue.addOperation(savingDataOperation)
-
     }
     
     private func updatePhotos(for userID: Int? ){
-        networkService?.getPhoto(for: userID, onComplete: { (photos) in
+        networkService.getPhoto(for: userID, onComplete: { (photos) in
             do {
                 let realm = try Realm()
                 let oldValues = realm.objects(Photo.self).filter("ownerID == %@", userID ?? -1)
@@ -88,9 +82,10 @@ class RealmManager {
             print(error)
             })
     }
-    func getPhotos(for userID: Int?, update: Bool) -> [Photo]?{
+    
+    func getPhotos(for userID: Int?, update: Bool) -> [Photo]{
         if update {
-            self.updatePhotos(for: userID)
+            updatePhotos(for: userID)
         }
         do {
             let realm = try Realm()
@@ -100,7 +95,7 @@ class RealmManager {
         
             return photos
         } catch {
-            return nil
+            return [Photo]()
         }
     }
 }

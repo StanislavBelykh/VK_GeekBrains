@@ -50,8 +50,8 @@ extension LoginWebViewController: WKNavigationDelegate {
         
         let token = params["access_token"]
         let userID = params["user_id"]
-        Session.shared.userID = Int(userID ?? "")
-        Session.shared.token = token!
+        SessionApp.shared.userID = Int(userID ?? "")
+        SessionApp.shared.token = token!
 
         if token != nil {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)

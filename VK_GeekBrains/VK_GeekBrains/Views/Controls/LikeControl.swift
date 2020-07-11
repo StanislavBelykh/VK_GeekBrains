@@ -62,7 +62,7 @@ class LikeControl: UIControl {
         UIView.transition(with: likeCountLabel,
                           duration: 0.3,
                           options: .transitionFlipFromTop,
-                          animations: {
+                          animations: { [unowned self] in
                         self.likeCountLabel.text = String(likeString!)
         })
         

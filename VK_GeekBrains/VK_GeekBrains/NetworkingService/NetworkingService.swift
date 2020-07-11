@@ -54,7 +54,7 @@ class NetworkingService {
             URLQueryItem(name: "photo_sizes", value: "1"),
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "count", value: "20"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -86,7 +86,7 @@ class NetworkingService {
             URLQueryItem(name: "filters", value: "post"),
             URLQueryItem(name: "start_from", value: "next_from"),
             URLQueryItem(name: "count", value: "20"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -141,7 +141,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "fields", value: "description"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
        
@@ -170,7 +170,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "fields", value: "description"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         return urlConstructor.url
@@ -180,7 +180,7 @@ class NetworkingService {
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "q", value: text),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -209,7 +209,7 @@ class NetworkingService {
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "group_id", value: String(id)),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -237,7 +237,7 @@ class NetworkingService {
         
         urlConstructor.queryItems = [
             URLQueryItem(name: "group_id", value: String(id)),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -268,7 +268,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "order", value: "name"),
             URLQueryItem(name: "fields", value: "sex, bdate, city, country, photo_100, photo_200_orig"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         
@@ -299,7 +299,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "order", value: "name"),
             URLQueryItem(name: "fields", value: "sex, bdate, city, country, photo_100, photo_200_orig"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         
@@ -330,7 +330,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "order", value: "name"),
             URLQueryItem(name: "fields", value: "sex, bdate, city, country, photo_100, photo_200_orig"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         let task = session.dataTask(with: urlConstructor.url!) { (data, response, error) in
@@ -363,7 +363,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "count", value: "0"),
             URLQueryItem(name: "type", value: "0"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         
@@ -396,7 +396,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "doc_id", value: "\(id)"),
             URLQueryItem(name: "title", value: "\(name)"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         
@@ -419,7 +419,7 @@ class NetworkingService {
         urlConstructor.queryItems = [
             URLQueryItem(name: "owner_id", value: "\(file.ownerID)"),
             URLQueryItem(name: "doc_id", value: "\(file.id)"),
-            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "access_token", value: SessionApp.shared.token),
             URLQueryItem(name: "v", value: constants.versionAPI),
         ]
         

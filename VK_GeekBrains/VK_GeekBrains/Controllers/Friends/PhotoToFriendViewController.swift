@@ -36,9 +36,9 @@ class PhotoToFriendViewController: UIViewController, PhotoToFriendViewController
                                                object: nil)
     }
     @objc private func setPhotos(){
-        let photosRealm = realmManager.getPhotos(for: userID, update: needUpdate)
+        let photos = realmManager.getPhotos(for: userID, update: needUpdate)
         needUpdate = false
-        guard let photos = photosRealm else { return }
+        guard !photos.isEmpty else { return }
         self.galleryCollectionView.photos = photos
         self.galleryCollectionView.reloadData()
     }
